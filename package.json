@@ -1,0 +1,8 @@
+{
+  "name": "pantriest",
+  "version": "1.0.0",
+  "author": "ARW",
+  "scripts": {
+    "start" : "node server/server.js"
+  }
+}
