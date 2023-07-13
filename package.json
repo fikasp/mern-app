@@ -1,12 +1,17 @@
 {
-  "name": "server",
+  "name": "pantriest",
   "version": "1.0.0",
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "node server.js"
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js",
+    "client": "npm run start --prefix client",
+    "client-build": "npm run build --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
+    "concurrently": "latest",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "express": "^4.18.2"
