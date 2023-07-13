@@ -4,11 +4,11 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "npm run start --prefix server",
-    "server": "npm run dev --prefix server",
-    "client": "npm run dev --prefix client",
     "prod": "npm run build --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "client": "npm run dev --prefix client",
+    "server": "npm run dev --prefix server",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "npm run start --prefix server"
   },
   "dependencies": {
     "concurrently": "latest",
