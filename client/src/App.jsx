@@ -13,7 +13,7 @@ export default function App() {
 
 	return (
 		<div className='container'>
-			<h1>Pantriest</h1>
+			<h1>Pantriest works...</h1>
 		</div>
 	)
 }
