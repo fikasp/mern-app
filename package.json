@@ -1,9 +1,10 @@
 {
-  "name": "pantriest",
+  "name": "server",
   "version": "1.0.0",
   "type": "module",
   "private": true,
   "scripts": {
+<<<<<<< HEAD
     "server": "npm run dev --prefix server",
     "client": "npm run dev --prefix client",
     "build": "npm run build --prefix client",
@@ -22,6 +23,11 @@
     "react-scripts": "^5.0.1",
     "sass": "^1.63.6",
 
+=======
+    "start": "node server.js"
+  },
+  "dependencies": {
+>>>>>>> parent of 4b2ad45 (add concurrently)
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "express": "^4.18.2"
