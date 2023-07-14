@@ -1,12 +1,15 @@
 import { Router } from 'express'
+import data from '../models/data.js'
+
 const router = Router()
-export default router
 
 router.get('/', (req, res) => {
-  res.send({api: "API works..."})
+  res.send(data)
 })
 
 router.get('/:id', (req, res) => {
   const {id} = req.params
-  res.send({api: id})
+  res.send(data[id])
 })
+
+export default router

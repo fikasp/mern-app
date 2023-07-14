@@ -9,12 +9,11 @@ const styles = (backgroundColor) => css`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	box-shadow: 0 0 2px 2px black;
 	text-shadow: 0 0 5px black;
 	transition: .5s;
 `
 
-export default function Header ({title}) {
+const Header = ({title}) => {
 	
 	const [backgroundColor, setBackgroundColor] = useState('gray');
 
@@ -32,3 +31,5 @@ export default function Header ({title}) {
 		<div css={styles(backgroundColor)}>{title}</div>
 	)
 }
+
+export default Header

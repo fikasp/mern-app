@@ -10,9 +10,10 @@ const styles = (color) => css`
 	overflow: hidden;
 `;
 
-export default function Container ({color, children}) {
+const Container = ({color, children}) => (
+	<div css={styles(color)}>
+		{children}
+	</div>
+)
 
-  return (
-		<div css={styles(color)}>{children}</div>
-	)
-}
+export default Container
