@@ -25,7 +25,7 @@ export default function App () {
     try {
       setIsLoading(true)
       setError(false)
-      
+
       const data = await getData()
       setData(data)
       console.log(data)
@@ -50,11 +50,12 @@ export default function App () {
       <Container color="#333">
         <Header title="PANTRIEST" />
         {isLoading ? (
-          <Typography mt={2}>Ładowanie danych...</Typography>)
-        : error ? (
-          <Typography mt={2}>Error... {error.message}</Typography>)
-        : (
-          <List data={data} />)
+            <Typography mt={2}>Ładowanie danych...</Typography>
+          ) : error ? (
+            <Typography mt={2}>Error... {error.message}</Typography>
+          ) : (
+            <List data={data} />
+          )
         }
         <Button onClick={fetchData}>Aktualizuj</Button>
       </Container>

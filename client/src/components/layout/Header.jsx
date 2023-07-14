@@ -9,6 +9,7 @@ const styles = (backgroundColor) => css`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-weight: bold;
 	text-shadow: 0 0 5px black;
 	transition: .5s;
 `

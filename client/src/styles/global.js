@@ -1,4 +1,8 @@
 import { css } from '@emotion/react';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 const global = css`
 	* {
@@ -18,7 +22,7 @@ const global = css`
   body {
 		color: white;
     background-color: black;
-    font-family: 'Verdana', sans-serif;
+    font-family: 'Roboto', sans-serif;
 		display: flex;
 		justify-content: center;
 		align-items: center;
