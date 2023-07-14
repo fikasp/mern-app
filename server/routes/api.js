@@ -1,15 +1,19 @@
 import { Router } from 'express'
-import data from '../models/data.js'
+import { getAll, getById, getByName } from '../controllers/controller.js'
 
 const router = Router()
 
 router.get('/', (req, res) => {
-  res.send(data)
+  res.send(getAll())
 })
 
 router.get('/:id', (req, res) => {
   const {id} = req.params
-  res.send(data[id])
+  if (!isNaN(id)) {
+    res.send(getById(id))
+  } else {
+    res.send(getByName(id))
+  }
 })
 
 export default router

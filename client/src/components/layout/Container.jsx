@@ -8,6 +8,12 @@ const styles = (color) => css`
 	background-color: ${color};
 	border-radius: 10px;
 	overflow: hidden;
+	flex-direction: column;
+	text-align: center;
+	display: flex;
+	& div {
+		padding: 10px;
+	}
 `;
 
 const Container = ({color, children}) => (
