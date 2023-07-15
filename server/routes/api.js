@@ -10,14 +10,24 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-  const data = await controller.getRecords()
-  res.json(data)
+  try {
+    const data = await controller.getRecords()
+    res.json(data)
+  } catch (err) {
+    res.send(`Server error... ${err}`)
+    console.log(err);
+  }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
   const {id} = req.params
-  const data = await controller.getRecord(id)
-  res.json(data || `Record ${id} does not exists...`)
+  try {
+    const data = await controller.getRecord(id)
+    res.json(data || `Record ${id} does not exists...`)
+  } catch (err) {
+    res.send(`Server error... ${err}`)
+    console.log(err);
+  }
 })
 
 router.delete('/:id', async (req, res) => {

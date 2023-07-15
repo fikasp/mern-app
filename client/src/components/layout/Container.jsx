@@ -2,7 +2,6 @@
 import { css } from '@emotion/react';
 
 const styles = (color) => css`
-	position: relative;
 	height: 50vh;
 	width: 50vw;
 	min-width: 450px;
@@ -12,9 +11,6 @@ const styles = (color) => css`
 	flex-direction: column;
 	text-align: center;
 	display: flex;
-	& div {
-		padding: 10px;
-	}
 `;
 
 const Container = ({color, children}) => (

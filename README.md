@@ -20,7 +20,7 @@ To install the project on your local machine, follow these steps:
 
 1. Run the project: `npm start`
 2. Open your browser and go to: `http://localhost:5000`
-3. Add tasks to the list, remove tasks once they are completed.
+3. Add and remove elements from the list.
 
 ## License
 

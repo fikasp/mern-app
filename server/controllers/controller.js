@@ -1,5 +1,5 @@
-import { read, write } from '../utils/files.js'
 import { getMaxId } from '../utils/maxId.js'
+import { read, write } from '../utils/files.js'
 
 const path = './models/data.json'
 
@@ -28,30 +28,6 @@ async function addRecord(name) {
   const newData = [...data, {id: newID, name}]
   await write(path, newData)
 }
-
-
-
-
-// // Funkcja do dodawania rekordów
-// async function addRecord(req, res) {
-//   try {
-//     // Odczytaj istniejące dane z pliku
-//     const data = await fs.readFile('dane.json', 'utf8');
-//     const existingData = JSON.parse(data);
-
-//     // Dodaj nowy rekord do danych
-//     const newRecord = { id: 1, name: 'Nowy rekord' }; // Przykładowy nowy rekord
-//     existingData.push(newRecord);
-
-//     // Zapisz zaktualizowane dane do pliku
-//     await fs.writeFile('dane.json', JSON.stringify(existingData), 'utf8');
-
-//     res.json({ message: 'Rekord dodany pomyślnie' });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send('Wystąpił błąd serwera');
-//   }
-// }
 
 export default {
   addRecord,

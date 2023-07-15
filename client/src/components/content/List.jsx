@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import ListItem from './ListItem'
+import ListItem from './Item'
 
 const styles = css`
 	text-align: center;
@@ -9,9 +9,10 @@ const styles = css`
 	flex-direction: column;
 	align-items: center;
 	padding: 10px;
+	gap: 10px;
 `
 
-const List = ({data}) => {
+const List = ({data, remove}) => {
 	
   return (
 		<ul css={styles}>
@@ -20,7 +21,8 @@ const List = ({data}) => {
 				<ListItem 
 					key={item.id}
 					id={item.id}
-					name={item.name}/>
+					name={item.name}
+					remove={remove}/>
 			))
 			: "List is empty"
 			}

@@ -4,14 +4,16 @@ import React from 'react'
 
 import Typography from '@mui/material/Typography'
 import List from '../content/List'
+import Form from '../content/Form'
 
 const styles = css`
 	height: calc(100% - 100px);
 	color: white;
+  padding: 10px;
   overflow: auto;
 `
 
-const Main = ({isLoading, error, data}) => {
+const Main = ({isLoading, error, data, remove, add}) => {
 
   return (
     <main css={styles}>
@@ -20,7 +22,10 @@ const Main = ({isLoading, error, data}) => {
         ) : error ? (
           <Typography mt={2}>Error... {error.message}</Typography>
         ) : (
-          <List data={data} />
+          <>
+            <Form add={add}/>
+            <List data={data} remove={remove}/>
+          </>
         )
       }
     </main>

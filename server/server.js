@@ -13,8 +13,8 @@ useLoggers(app)
 
 app.use('/api', apiRouter)
 
-useStatic(app)
 useErrors(app)
+useStatic(app)
 
 app.listen(port, () => {
   console.log(`Server started... http://localhost:${port}`)
