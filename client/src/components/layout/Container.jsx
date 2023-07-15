@@ -2,6 +2,7 @@
 import { css } from '@emotion/react';
 
 const styles = (color) => css`
+	position: relative;
 	height: 50vh;
 	width: 50vw;
 	min-width: 450px;

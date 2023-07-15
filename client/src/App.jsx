@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react'
 
 // components
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
 import Container from './components/layout/Container'
 import Header from './components/layout/Header'
-import List from './components/content/List'
+import Footer from './components/layout/Footer'
+import Main from './components/layout/Main'
 
 // services
 import { getData } from './services/service'
@@ -43,22 +42,16 @@ export default function App () {
     fetchData()
   }, [])
 
-
   return (
-    <>
+    <Container color="#333">
       <Global styles={global} />
-      <Container color="#333">
-        <Header title="PANTRIEST" />
-        {isLoading ? (
-            <Typography mt={2}>Ładowanie danych...</Typography>
-          ) : error ? (
-            <Typography mt={2}>Error... {error.message}</Typography>
-          ) : (
-            <List data={data} />
-          )
-        }
-        <Button onClick={fetchData}>Aktualizuj</Button>
-      </Container>
-    </>
+      <Header title="PANTRIEST" />
+      <Main 
+        isLoading={isLoading}
+        error={error}
+        data={data}
+      />
+      <Footer fetchData={fetchData}/>
+    </Container>
   );
 }

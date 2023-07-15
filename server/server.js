@@ -1,20 +1,23 @@
 import express from 'express'
-import useMiddlewares from './middlewares/middlewares.js'
+import useErrors from './middlewares/errors.js'
+import useLoggers from './middlewares/loggers.js'
+import useParsers from './middlewares/parsers.js'
+import useStatic from './middlewares/static.js'
 import apiRouter from './routes/api.js'
 
-const app = express()
 const port = process.env.PORT || 5000
+const app = express()
 
-// middlewares
-useMiddlewares(app)
+useParsers(app)
+useLoggers(app)
 
-// api routing
 app.use('/api', apiRouter)
 
-// port listening
+useStatic(app)
+useErrors(app)
+
 app.listen(port, () => {
   console.log(`Server started... http://localhost:${port}`)
 })
 
 export default app
-

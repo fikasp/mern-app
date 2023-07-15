@@ -29,7 +29,7 @@ const Header = ({title}) => {
   }, [])
 
   return (
-		<div css={styles(backgroundColor)}>{title}</div>
+		<header css={styles(backgroundColor)}>{title}</header>
 	)
 }
 

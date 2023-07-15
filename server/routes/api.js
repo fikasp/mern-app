@@ -1,19 +1,29 @@
 import { Router } from 'express'
-import { getAll, getById, getByName } from '../controllers/controller.js'
+import controller from '../controllers/controller.js'
 
 const router = Router()
 
-router.get('/', (req, res) => {
-  res.send(getAll())
+router.post('/', async (req, res) => {
+  const name = req.body.name
+  await controller.addRecord(name)
+  res.send(`Record ${name} added...`)
 })
 
-router.get('/:id', (req, res) => {
+router.get('/', async (req, res) => {
+  const data = await controller.getRecords()
+  res.json(data)
+})
+
+router.get('/:id', async (req, res) => {
   const {id} = req.params
-  if (!isNaN(id)) {
-    res.send(getById(id))
-  } else {
-    res.send(getByName(id))
-  }
+  const data = await controller.getRecord(id)
+  res.json(data || `Record ${id} does not exists...`)
+})
+
+router.delete('/:id', async (req, res) => {
+  const {id} = req.params
+  await controller.deleteRecord(id)
+  res.send(`Record ${id} deleted...`)
 })
 
 export default router
