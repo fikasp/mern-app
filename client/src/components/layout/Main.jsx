@@ -14,7 +14,7 @@ const styles = css`
 
   &>div {
     width: 50vw;
-    min-width: 450px;
+    min-width: 300px;
     padding: 10px;
   }
 `
