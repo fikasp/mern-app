@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import React from 'react'
+import { useContext } from 'react'
+import Context from '../../context/context';
 
 import Typography from '@mui/material/Typography'
 import List from '../content/List'
@@ -8,26 +9,35 @@ import Form from '../content/Form'
 
 const styles = css`
 	height: calc(100% - 100px);
-	color: white;
-  padding: 10px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &>div {
+    width: 50vw;
+    min-width: 450px;
+    padding: 10px;
+  }
 `
 
-const Main = ({isLoading, error, data, remove, add}) => {
+const Main = () => {
+
+  const{ isLoading, error } = useContext(Context)
 
   return (
     <main css={styles}>
+      <div>
       { isLoading ? (
-          <Typography mt={2}>Ładowanie danych...</Typography>
+        <Typography>Ładowanie danych...</Typography>
         ) : error ? (
-          <Typography mt={2}>Error... {error.message}</Typography>
+          <Typography>Error... {error.message}</Typography>
         ) : (
           <>
-            <Form add={add}/>
-            <List data={data} remove={remove}/>
+            <Form/>
+            <List/>
           </>
         )
       }
+      </div>
     </main>
 
   )

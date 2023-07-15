@@ -1,5 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import {useContext} from 'react';
+import Context from '../../context/context';
 import ListItem from './Item'
 
 const styles = css`
@@ -12,8 +14,9 @@ const styles = css`
 	gap: 10px;
 `
 
-const List = ({data, remove}) => {
-	
+const List = () => {
+	const {data} = useContext(Context)
+
   return (
 		<ul css={styles}>
 			{data?.length > 0 ?
@@ -22,7 +25,7 @@ const List = ({data, remove}) => {
 					key={item.id}
 					id={item.id}
 					name={item.name}
-					remove={remove}/>
+				/>
 			))
 			: "List is empty"
 			}

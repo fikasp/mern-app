@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import TextField from '@mui/material/TextField';
+import Context from '../../context/context';
 
-
-const Form = ({add}) => {
+const Form = () => {
 
   const [name, setName] = useState("")
+  const {handleAdd} = useContext(Context)
 
   const handleChange = (evt) => {
     const value = evt.target.value
@@ -16,7 +17,7 @@ const Form = ({add}) => {
   const handleKeyDown = (evt) => {
     if (evt.key === "Enter") {
       console.log("Enter pressed");
-      add(name)
+      handleAdd(name)
       setName("")
     }
   }

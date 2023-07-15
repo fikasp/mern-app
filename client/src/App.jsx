@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import Context from './context/context'
 
 // components
 import Container from './components/layout/Container'
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import Main from './components/layout/Main'
+
+// context
+import Context from './context/context'
 
 // services
 import service from './services/service'
@@ -20,7 +22,7 @@ export default function App () {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const fetchData = async () => {
+  const handleGet = async () => {
     try {
       setError(false)
 
@@ -37,40 +39,44 @@ export default function App () {
     }
   }
 
-  const handleRemove = (id) => async () => {
-    try {
-      await service.deleteData(id)
-      await fetchData()
-    } catch (error) {
-      console.error(error);
-    }
-	}
   const handleAdd = async (name) => {
     try {
       await service.addData(name)
-      await fetchData()
+      await handleGet()
 
     } catch (error) {
       console.error(error);
     }
   }
 
+  const handleRemove = (id) => async () => {
+    try {
+      await service.deleteData(id)
+      await handleGet()
+    } catch (error) {
+      console.error(error);
+    }
+	}
+
   useEffect(() => {
-    fetchData()
+    handleGet()
   }, [])
 
   return (
-    <Container color="#333">
+    <Context.Provider value={{
+      data, 
+      error, 
+      isLoading, 
+      handleRemove, 
+      handleAdd, 
+      handleGet
+      }}>
       <Global styles={global} />
-      <Header title="PANTRIEST" />
-      <Main 
-        isLoading={isLoading}
-        error={error}
-        data={data}
-        remove={handleRemove}
-        add={handleAdd}
-      />
-      <Footer fetchData={fetchData}/>
-    </Container>
+      <Container color="#333">
+        <Header title="PANTRIEST" />
+        <Main/>
+        <Footer/>
+      </Container>
+    </Context.Provider>
   );
 }

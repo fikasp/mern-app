@@ -1,5 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { useContext } from 'react';
+import Context from '../../context/context';
 
 // components
 import Button from '@mui/material/Button'
@@ -12,11 +14,13 @@ const styles = css`
 	align-items: center;
 `
 
-const Footer = ({fetchData}) => {
+const Footer = () => {
+
+  const {handleGet} = useContext(Context)
 
   return (
     <footer css={styles}>
-      <Button onClick={fetchData}>Update</Button>
+      <Button onClick={handleGet}>Update</Button>
     </footer>
   )
 }
