@@ -1,31 +1,31 @@
 import { Router } from 'express'
-import controller from '../controllers/controller.js'
+import * as controller from '../controllers/controller.js'
 
 const router = Router()
 
 router.post('/', async (req, res) => {
   const name = req.body.name
-  await controller.addRecord(name)
+  await controller.createRecord(name)
   res.send(`Record ${name} added...`)
 })
 
 router.get('/', async (req, res) => {
   try {
-    const data = await controller.getRecords()
+    const data = await controller.readRecords()
     res.json(data)
   } catch (err) {
-    res.send(`Server error... ${err}`)
+    res.status(500).send(`Server error... ${err}`)
     console.log(err);
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', async (req, res) => {
   const {id} = req.params
   try {
-    const data = await controller.getRecord(id)
+    const data = await controller.readRecord(id)
     res.json(data || `Record ${id} does not exists...`)
   } catch (err) {
-    res.send(`Server error... ${err}`)
+    res.status(500).send(`Server error... ${err}`)
     console.log(err);
   }
 })
@@ -36,4 +36,8 @@ router.delete('/:id', async (req, res) => {
   res.send(`Record ${id} deleted...`)
 })
 
-export default router
+function useRouter(app) {
+  app.use('/api', router)
+}
+
+export default useRouter

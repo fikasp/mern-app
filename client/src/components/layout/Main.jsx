@@ -39,7 +39,6 @@ const Main = () => {
       }
       </div>
     </main>
-
   )
 }
 

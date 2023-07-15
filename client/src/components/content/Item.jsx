@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import {useContext} from 'react';
+import { useContext } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Context from '../../context/context';
 

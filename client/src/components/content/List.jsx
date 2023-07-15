@@ -20,7 +20,7 @@ const List = () => {
   return (
 		<ul css={styles}>
 			{data?.length > 0 ?
-				data.map(item => (
+				data?.map(item => (
 				<ListItem 
 					key={item.id}
 					id={item.id}

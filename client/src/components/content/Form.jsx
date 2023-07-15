@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import {useState, useContext} from 'react';
+import { useState, useContext } from 'react';
 import TextField from '@mui/material/TextField';
 import Context from '../../context/context';
 
@@ -10,13 +10,11 @@ const Form = () => {
 
   const handleChange = (evt) => {
     const value = evt.target.value
-    console.log(value);
     setName(value)
   }
 
   const handleKeyDown = (evt) => {
     if (evt.key === "Enter") {
-      console.log("Enter pressed");
       handleAdd(name)
       setName("")
     }
@@ -25,7 +23,6 @@ const Form = () => {
   return (
 		<TextField 
       sx={{margin: '10px', input: {textAlign: "center"}}}
-      InputLabel={{sx: {textAlign: "center"}}}
       onChange={handleChange} 
       onKeyDown={handleKeyDown}
       label="Add element"

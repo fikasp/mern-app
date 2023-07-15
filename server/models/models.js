@@ -9,3 +9,9 @@ export async function write(file, data) {
   const string = JSON.stringify(data)
   await fs.writeFile(file, string, 'utf8')
 }
+
+export function getMaxId(records) {
+  return records.reduce((maxId, record) => {
+    return Math.max(maxId, record.id)
+  }, 0)
+}
