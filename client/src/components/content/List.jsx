@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import {useContext} from 'react';
+import { useContext } from 'react';
 import Context from '../../context/context';
 import ListItem from './Item'
 

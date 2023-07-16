@@ -17,7 +17,7 @@ const global = css`
 		box-sizing: border-box;
 		border-spacing: 0;
 	}
-  body {
+  html {
 		color: white;
     background-color: black;
     font-family: 'Roboto', sans-serif;

@@ -12,7 +12,7 @@ export default function App () {
     <Provider>
       <Global styles={global} />
       <Container color="#333">
-        <Header title="PANTRIST"/>
+        <Header title="MERN APP"/>
         <Main/>
         <Footer/>
       </Container>

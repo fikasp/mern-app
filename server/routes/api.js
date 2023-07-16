@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-  const {id} = req.params
+  const { id } = req.params
   try {
     const data = await controller.readRecord(id)
     res.json(data || `Record ${id} does not exists...`)
@@ -30,8 +30,20 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+router.put('/:id', async (req, res) => {
+  const { id } = req.params
+  const updatedName = req.body.name
+  try {
+    await controller.updateRecord(id, updatedName)
+    res.send(`Record ${id} updated...`)
+  } catch (err) {
+    res.status(500).send(`Server error... ${err}`)
+    console.log(err)
+  }
+})
+
 router.delete('/:id', async (req, res) => {
-  const {id} = req.params
+  const { id } = req.params
   await controller.deleteRecord(id)
   res.send(`Record ${id} deleted...`)
 })

@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Context from '../../context/context';
 
 const styles = css`
+
 	display: grid;
 	grid-template-columns: 30px 150px 30px;
 	& div {

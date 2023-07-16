@@ -12,7 +12,7 @@ const styles = css`
   overflow-x: hidden;
   overflow-y: auto;
 
-  &>div {
+  &>section {
     width: 50vw;
     min-width: 300px;
     padding: 10px;
@@ -25,7 +25,7 @@ const Main = () => {
 
   return (
     <main css={styles}>
-      <div>
+      <section>
       { isLoading ? (
         <Typography>Ładowanie danych...</Typography>
         ) : error ? (
@@ -37,7 +37,7 @@ const Main = () => {
           </>
         )
       }
-      </div>
+      </section>
     </main>
   )
 }

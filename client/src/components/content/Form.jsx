@@ -21,7 +21,7 @@ const Form = () => {
   }
 
   return (
-		<TextField 
+		<TextField
       sx={{margin: '10px', input: {textAlign: "center"}}}
       onChange={handleChange} 
       onKeyDown={handleKeyDown}

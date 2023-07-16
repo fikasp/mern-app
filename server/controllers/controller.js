@@ -21,6 +21,14 @@ export async function readRecord(id) {
   return record
 }
 
+export async function updateRecord(id, updatedName) {
+  const data = await models.read(path)
+  const recordIndex = data.findIndex(record => record.id === Number(id))
+  const updatedData = [...data];
+  updatedData[recordIndex].name = updatedName
+  await models.write(path, updatedData)
+}
+
 export async function deleteRecord(id) {
   const data = await models.read(path)
   const filteredData = data.filter(record => record.id !== Number(id));
