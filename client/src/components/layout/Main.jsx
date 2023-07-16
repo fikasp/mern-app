@@ -25,16 +25,22 @@ const Main = () => {
   return (
     <main css={styles}>
       <section>
-      { isLoading ? (
+      { 
+        isLoading ? 
+      (
         <Typography>Ładowanie danych...</Typography>
-        ) : error ? (
-          <Typography>Error... {error.message}</Typography>
-        ) : (
-          <>
-            <Form/>
-            <List/>
-          </>
-        )
+      ) 
+      : error ? 
+      (
+        <Typography>Error... {error.message}</Typography>
+      ) 
+      : 
+      (
+        <>
+          <Form/>
+          <List/>
+        </>
+      )
       }
       </section>
     </main>

@@ -4,9 +4,9 @@ import * as controller from '../controllers/controller.js'
 const router = Router()
 
 router.post('/', async (req, res) => {
-  const name = req.body.name
-  await controller.createRecord(name)
-  res.send(`Record ${name} added...`)
+  const value = req.body.value
+  await controller.createRecord(value)
+  res.send(`Record ${value} added...`)
 })
 
 router.get('/', async (req, res) => {
@@ -32,9 +32,9 @@ router.get('/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   const { id } = req.params
-  const updatedName = req.body.name
+  const updatedValue = req.body.value
   try {
-    await controller.updateRecord(id, updatedName)
+    await controller.updateRecord(id, updatedValue)
     res.send(`Record ${id} updated...`)
   } catch (err) {
     res.status(500).send(`Server error... ${err}`)

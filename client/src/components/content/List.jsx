@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { useContext } from 'react';
 import Context from '../../context/context';
-import ListItem from './Item'
+import Item from './Item'
 
 const styles = css`
 	text-align: center;
@@ -19,15 +19,21 @@ const List = () => {
 
   return (
 		<ul css={styles}>
-			{Array.isArray(data) && data.length > 0 ?
+			{
+			Array.isArray(data) && data.length > 0 ? 
+			(
 				data.map(item => (
-				<ListItem 
-					key={item.id}
-					id={item.id}
-					name={item.name}
-				/>
-			))
-			: "List is empty"
+					<Item 
+						key={item.id}
+						id={item.id}
+						value={item.value}
+					/>
+				))
+			) 
+			: 
+			(
+				"List is empty"
+			)
 			}
 		</ul>
 	)

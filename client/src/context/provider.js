@@ -24,9 +24,9 @@ const Provider = ({ children }) => {
     }
   }
 
-  const handleCreate = async (name) => {
+  const handleCreate = async (value) => {
     try {
-      await service.createData(name)
+      await service.createData(value)
       await handleRead()
 
     } catch (error) {
@@ -34,9 +34,9 @@ const Provider = ({ children }) => {
     }
   }
 
-  const handleUpdate = async (id, updatedName) => {
+  const handleUpdate = async (id, value) => {
     try {
-      await service.updateData(id, updatedName)
+      await service.updateData(id, value)
       await handleRead()
     } catch (error) {
       console.error(error)
@@ -57,7 +57,8 @@ const Provider = ({ children }) => {
   }, [])
 
   return (
-    <Context.Provider value={{
+    <Context.Provider 
+      value={{
       data, 
       error, 
       isLoading, 

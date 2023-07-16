@@ -1,10 +1,10 @@
 import * as models from '../models/models.js'
 const path = './models/data.json'
 
-export async function createRecord(name) {
+export async function createRecord(value) {
   const data = await models.read(path)
   const newID = models.getMaxId(data)+1
-  const newData = [...data, {id: newID, name}]
+  const newData = [...data, {id: newID, value}]
   await models.write(path, newData)
 }
 
@@ -21,11 +21,11 @@ export async function readRecord(id) {
   return record
 }
 
-export async function updateRecord(id, updatedName) {
+export async function updateRecord(id, value) {
   const data = await models.read(path)
   const recordIndex = data.findIndex(record => record.id === Number(id))
   const updatedData = [...data];
-  updatedData[recordIndex].name = updatedName
+  updatedData[recordIndex].value = value
   await models.write(path, updatedData)
 }
 

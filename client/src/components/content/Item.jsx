@@ -21,7 +21,7 @@ const styles = css`
 		color: white;
 	}
 `
-const ListItem = ({ id, name }) => {
+const Item = ({ id, value }) => {
   const {handleUpdate, handleDelete} = useContext(Context)
   const [isEditing, setIsEditing] = useState(false)
 	const inputRef = useRef(null)
@@ -53,36 +53,40 @@ const ListItem = ({ id, name }) => {
     }
   }
 
-	const handleDoubleClick = () => {
-    setIsEditing(true)
-  };
-
   return (
     <li css={styles}>
       <div>{id}</div>
-      {isEditing ? (
-        <input
-          type='text'
-					ref={inputRef}
-					onKeyDown={handleKeyDown}
-					defaultValue={name}
-        />
-      ) : (
-        <div className='content' onDoubleClick={handleDoubleClick}>{name}</div>
-      )}
-      {isEditing ? (
-        <div>
-					<SaveIcon fontSize='small' onClick={handleSave} />
-					<CancelIcon fontSize='small' onClick={handleCancel} />
-        </div>
-      ) : (
-        <div>
-          <EditIcon fontSize='small' onClick={handleEdit} />
-          <DeleteIcon fontSize='small' onClick={handleDelete(id)} />
-        </div>
-      )}
+      {
+      isEditing ? 
+      (
+        // edit mode
+        <>
+          <input 
+            type='text'
+            ref={inputRef}
+            onKeyDown={handleKeyDown}
+            defaultValue={value}
+          />
+          <div>
+            <SaveIcon fontSize='small' onClick={handleSave} />
+            <CancelIcon fontSize='small' onClick={handleCancel} />
+          </div>
+        </>
+      ) 
+      : 
+      (
+        // normal mode
+        <>
+          <div onDoubleClick={handleEdit}>{value}</div>
+          <div>
+            <EditIcon fontSize='small' onClick={handleEdit} />
+            <DeleteIcon fontSize='small' onClick={handleDelete(id)} />
+          </div>
+        </>
+      )
+      }
     </li>
   )
 }
 
-export default ListItem
+export default Item
