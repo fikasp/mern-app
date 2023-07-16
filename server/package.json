@@ -6,5 +6,14 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js --ignore data.json"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "concurrently": "latest",
+    "cookie-parser": "~1.4.4",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
