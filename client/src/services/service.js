@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000'
+console.log(apiUrl);
 
 export async function createData(name) {
 	const response = await axios.post(`${apiUrl}/api`, { name })
