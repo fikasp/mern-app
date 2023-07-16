@@ -14,7 +14,7 @@ const styles = (backgroundColor) => css`
 	transition: .5s;
 `
 
-const Header = ({title}) => {
+const Header = ({ title }) => {
 	
 	const [backgroundColor, setBackgroundColor] = useState('gray');
 

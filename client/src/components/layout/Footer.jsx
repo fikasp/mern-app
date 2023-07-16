@@ -15,12 +15,11 @@ const styles = css`
 `
 
 const Footer = () => {
-
-  const {handleGet} = useContext(Context)
+  const {handleRead} = useContext(Context)
 
   return (
     <footer css={styles}>
-      <Button onClick={handleGet}>Update</Button>
+      <Button onClick={handleRead}>Update</Button>
     </footer>
   )
 }

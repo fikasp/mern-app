@@ -13,9 +13,9 @@ const styles = (color) => css`
 	display: flex;
 `;
 
-const Container = ({color, children}) => (
+const Container = ({ color, children }) => (
 	<div css={styles(color)}>
-		{children}
+		{ children }
 	</div>
 )
 

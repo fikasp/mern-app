@@ -20,8 +20,7 @@ const styles = css`
 `
 
 const Main = () => {
-
-  const{ isLoading, error } = useContext(Context)
+  const{isLoading,error} = useContext(Context)
 
   return (
     <main css={styles}>

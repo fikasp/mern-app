@@ -8,11 +8,10 @@ const Provider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const handleGet = async () => {
+  const handleRead = async () => {
     try {
       setError(false)
-
-      const data = await service.getData()
+      const data = await service.readData()
       setData(data)
       console.log(data)
 
@@ -25,27 +24,36 @@ const Provider = ({ children }) => {
     }
   }
 
-  const handleAdd = async (name) => {
+  const handleCreate = async (name) => {
     try {
-      await service.addData(name)
-      await handleGet()
+      await service.createData(name)
+      await handleRead()
 
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   }
 
-  const handleRemove = (id) => async () => {
+  const handleUpdate = async (id, updatedName) => {
+    try {
+      await service.updateData(id, updatedName)
+      await handleRead()
+    } catch (error) {
+      console.error(error)
+    }
+  };
+  
+  const handleDelete = (id) => async () => {
     try {
       await service.deleteData(id)
-      await handleGet()
+      await handleRead()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
 	}
 
   useEffect(() => {
-    handleGet()
+    handleRead()
   }, [])
 
   return (
@@ -53,9 +61,10 @@ const Provider = ({ children }) => {
       data, 
       error, 
       isLoading, 
-      handleRemove, 
-      handleAdd, 
-      handleGet
+      handleCreate, 
+      handleRead,
+      handleUpdate,
+      handleDelete, 
       }}>
       {children}
     </Context.Provider>

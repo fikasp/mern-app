@@ -1,12 +1,23 @@
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import { useState, useContext } from 'react';
 import TextField from '@mui/material/TextField';
 import Context from '../../context/context';
 
+const styles = css`
+  margin: 10px;
+  & input {
+    color: white;
+  }
+  & .MuiFormLabel-root {
+    color: gray;
+  }
+`
+
 const Form = () => {
 
   const [name, setName] = useState("")
-  const {handleAdd} = useContext(Context)
+  const {handleCreate} = useContext(Context)
 
   const handleChange = (evt) => {
     const value = evt.target.value
@@ -15,14 +26,14 @@ const Form = () => {
 
   const handleKeyDown = (evt) => {
     if (evt.key === "Enter") {
-      handleAdd(name)
+      handleCreate(name)
       setName("")
     }
   }
 
   return (
 		<TextField
-      sx={{margin: '10px', input: {textAlign: "center"}}}
+      css={styles}
       onChange={handleChange} 
       onKeyDown={handleKeyDown}
       label="Add element"
