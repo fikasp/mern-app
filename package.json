@@ -8,10 +8,11 @@
     "server"
   ],
   "scripts": {
-    "prod": "npm run build --prefix client",
+    "build": "npm run build --prefix client",
     "client": "npm run dev --prefix client",
     "server": "npm run dev --prefix server",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "npm run start --prefix server"
+    "start": "npm run start --prefix server",
+    "test" : "npm test --prefix server"
   }
 }
