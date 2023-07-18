@@ -10,14 +10,12 @@ export async function createRecord(value) {
 
 export async function readRecords() {
   const data = await models.read(path)
-  console.log(data)
   return data
 }
 
 export async function readRecord(id) {
   const data = await models.read(path)
   const record = data.find(record => record.id === Number(id))
-  console.log(record)
   return record
 }
 

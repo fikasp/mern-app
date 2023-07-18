@@ -4,48 +4,60 @@ import * as controller from '../controllers/controller.js'
 const router = Router()
 
 router.post('/', async (req, res) => {
-  const value = req.body.value
-  await controller.createRecord(value)
-  res.send(`Record ${value} added...`)
+  try {
+    const value = req.body.value
+    await controller.createRecord(value)
+    res.send(`Record ${value} added...`)
+  } catch (err) {
+    next(err)
+  } 
 })
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
   try {
     const data = await controller.readRecords()
+    console.log(data)
     res.json(data)
   } catch (err) {
-    res.status(500).send(`Server error... ${err}`)
-    console.log(err);
+    next(err)
   }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
   const { id } = req.params
   try {
     const data = await controller.readRecord(id)
-    res.json(data || `Record ${id} does not exists...`)
+    if (!data) {
+      const error = new Error(`Record ${id} does not exist...`)
+      error.status = 404
+      throw error
+    }
+    console.log(data)
+    res.json(data)
   } catch (err) {
-    res.status(500).send(`Server error... ${err}`)
-    console.log(err);
+    next(err)
   }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', async (req, res, next) => {
   const { id } = req.params
   const updatedValue = req.body.value
   try {
     await controller.updateRecord(id, updatedValue)
     res.send(`Record ${id} updated...`)
   } catch (err) {
-    res.status(500).send(`Server error... ${err}`)
-    console.log(err)
+    next(err)
   }
 })
 
 router.delete('/:id', async (req, res) => {
   const { id } = req.params
-  await controller.deleteRecord(id)
-  res.send(`Record ${id} deleted...`)
+  try {
+    await controller.deleteRecord(id)
+    res.send(`Record ${id} deleted...`)
+  } catch (err) {
+    next(err)
+  }
 })
 
 function useRouter(app) {
