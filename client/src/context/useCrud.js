@@ -11,7 +11,6 @@ export const useCrud = () => {
       setError(false)
       const data = await service.readData()
       setData(data)
-      console.log(data)
     } catch (error) {
       setError(error)
       console.error(error)
@@ -22,8 +21,8 @@ export const useCrud = () => {
 
   const handleCreate = async (value) => {
     try {
-      await service.createData(value)
-      await handleRead()
+      const data = await service.createData(value)
+      setData(data)
     } catch (error) {
       console.error(error)
     }
@@ -31,8 +30,8 @@ export const useCrud = () => {
 
   const handleUpdate = async (id, value) => {
     try {
-      await service.updateData(id, { value })
-      await handleRead()
+      const data = await service.updateData(id, { value })
+      setData(data)
     } catch (error) {
       console.error(error)
     }
@@ -40,8 +39,8 @@ export const useCrud = () => {
 
   const handleDone = async (id, done) => {
     try {
-      await service.updateData(id, { done })
-      await handleRead()
+      const data = await service.updateData(id, { done })
+      setData(data)
     } catch (error) {
       console.error(error)
     }
@@ -49,8 +48,8 @@ export const useCrud = () => {
 
   const handleDelete = (id) => async() => {
     try {
-      await service.deleteData(id)
-      await handleRead()
+      const data = await service.deleteData(id)
+      setData(data)
     } catch (error) {
       console.error(error)
     }
