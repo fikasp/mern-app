@@ -10,13 +10,14 @@ import Context from '../../context/context'
 const styles = css`
   display: grid;
   grid-template-columns: 20px 145px 45px;
-	padding: 3px;
+	padding: 4px;
   & * {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 	& input {
+    font-size: 15px;
 		background-color: #222;
 		color: white;
 	}
