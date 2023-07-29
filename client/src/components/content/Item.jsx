@@ -88,7 +88,7 @@ const Item = ({ id, value, done }) => {
             <>
               <input
                 type='text'
-                className={`input${done?' done' : ''}`}
+                className={`input${isChecked?' done' : ''}`}
                 ref={inputRef}
                 onKeyDown={handleKeyDown}
                 defaultValue={value}
@@ -104,7 +104,7 @@ const Item = ({ id, value, done }) => {
             // normal mode
             <>
               <div 
-                className={`text${done?' done' : ''}`} 
+                className={`text${isChecked?' done' : ''}`} 
                 onDoubleClick={handleEdit}
                 >{value}
               </div>
