@@ -1,7 +1,6 @@
 import * as models from '../models/models.js'
 const path = './models/data.json'
 
-
 export async function createRecord(req, res) {
   try {
     const value = req.body.value
