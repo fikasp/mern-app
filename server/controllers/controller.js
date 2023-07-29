@@ -7,7 +7,7 @@ export async function createRecord(req, res) {
     const value = req.body.value
     const data = await models.read(path)
     const newID = models.getMaxId(data) + 1
-    const newData = [...data, { id: newID, value }]
+    const newData = [...data, { id: newID, value, done: false }]
     await models.write(path, newData)
     res.send(`Record ${value} added...`)
   } catch (err) {
@@ -36,7 +36,7 @@ export async function readRecord(req, res, next) {
       throw error
     }
     console.log(record)
-    res.json(record)
+    res.status(200).json(record)
   } catch (err) {
     next(err)
   }
@@ -44,12 +44,13 @@ export async function readRecord(req, res, next) {
 
 export async function updateRecord(req, res, next) {
   const { id } = req.params
-  const updatedValue = req.body.value
+  const updatedObj = req.body
+  console.log(updatedObj);
   try {
     const data = await models.read(path)
-    const recordIndex = data.findIndex(record => record.id === Number(id))
     const updatedData = [...data];
-    updatedData[recordIndex].value = updatedValue
+    const recordIndex = updatedData.findIndex(record => record.id === Number(id))
+    updatedData[recordIndex] = { ...updatedData[recordIndex], ...updatedObj }
     await models.write(path, updatedData)
     res.send(`Record ${id} updated...`)
   } catch (err) {

@@ -1,9 +1,7 @@
-import Context from "./context"
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react"
 import * as service from '../services/service'
 
-const Provider = ({ children }) => {
-
+export const useCrud = () => {
   const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -14,11 +12,9 @@ const Provider = ({ children }) => {
       const data = await service.readData()
       setData(data)
       console.log(data)
-
     } catch (error) {
       setError(error)
       console.error(error)
-
     } finally {
       setIsLoading(false)
     }
@@ -28,7 +24,6 @@ const Provider = ({ children }) => {
     try {
       await service.createData(value)
       await handleRead()
-
     } catch (error) {
       console.error(error)
     }
@@ -36,39 +31,43 @@ const Provider = ({ children }) => {
 
   const handleUpdate = async (id, value) => {
     try {
-      await service.updateData(id, value)
+      await service.updateData(id, { value })
       await handleRead()
     } catch (error) {
       console.error(error)
     }
-  };
-  
-  const handleDelete = (id) => async () => {
+  }
+
+  const handleDone = async (id, done) => {
+    try {
+      await service.updateData(id, { done })
+      await handleRead()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleDelete = (id) => async() => {
     try {
       await service.deleteData(id)
       await handleRead()
     } catch (error) {
       console.error(error)
     }
-	}
+  }
 
   useEffect(() => {
     handleRead()
   }, [])
 
-  return (
-    <Context.Provider 
-      value={{
-      data, 
-      error, 
-      isLoading, 
-      handleCreate, 
-      handleRead,
-      handleUpdate,
-      handleDelete, 
-      }}>
-      {children}
-    </Context.Provider>
-)}
-
-export default Provider
+  return ({
+    data,
+    error,
+    isLoading,
+    handleCreate,
+    handleRead,
+    handleUpdate,
+    handleDone,
+    handleDelete,
+  })
+}

@@ -27,6 +27,7 @@ const List = () => {
 						key={item.id}
 						id={item.id}
 						value={item.value}
+						done={item.done}
 					/>
 				))
 			) 

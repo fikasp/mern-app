@@ -13,8 +13,8 @@ export async function readData() {
 	return response.data
 }
 
-export async function updateData(id, value) {
-  const response = await axios.put(`${apiUrl}/api/${id}`,{value})
+export async function updateData(id, obj) {
+  const response = await axios.put(`${apiUrl}/api/${id}`, obj)
   console.log(response)
 }
 

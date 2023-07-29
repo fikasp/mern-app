@@ -1,4 +1,4 @@
-import Provider from './context/provider'
+import { Provider } from './context/context'
 import Container from './components/layout/Container'
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
