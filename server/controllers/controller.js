@@ -5,6 +5,7 @@ export async function createRecord(req, res) {
   try {
     const value = req.body.value
     const data = await models.read(path)
+
     const newID = models.getMaxId(data) + 1
     const newData = [...data, { id: newID, value, done: false }]
 
@@ -46,17 +47,17 @@ export async function readRecord(req, res, next) {
 
 export async function updateRecord(req, res, next) {
   const { id } = req.params
-  const updatedObj = req.body
+  const updatedData = req.body
   try {
     const data = await models.read(path)
-    const updatedData = [...data]
-    const recordIndex = updatedData.findIndex(record => record.id === Number(id))
-    updatedData[recordIndex] = { ...updatedData[recordIndex], ...updatedObj }
-    await models.write(path, updatedData)
-    res.json(updatedData)
+    const newData = data.map(record => record.id == Number(id) ? {...record, ...updatedData} : record)
+    const recordIndex = newData.findIndex(record => record.id === Number(id))
+
+    await models.write(path, newData)
+    res.json(newData)
 
     console.log(`Record ${id} updated...`)
-    console.log(updatedData[recordIndex])
+    console.log(newData[recordIndex])
   } catch (err) {
     next(err)
   }
@@ -66,10 +67,10 @@ export async function deleteRecord(req, res) {
   const { id } = req.params
   try {
     const data = await models.read(path)
-    const filteredData = data.filter(record => record.id !== Number(id))
+    const newData = data.filter(record => record.id !== Number(id))
 
-    await models.write(path, filteredData)
-    res.json(filteredData)
+    await models.write(path, newData)
+    res.json(newData)
 
     console.log(`Record ${id} deleted...`)
   } catch (err) {
