@@ -38,8 +38,9 @@ const styles = css`
 const Item = ({ id, value, done }) => {
   const { handleUpdate, handleDelete, handleDone } = useContext(Context)
   const [isEditing, setIsEditing] = useState(false)
-  const [isChecked, setIsChecked] = useState(done)
   const inputRef = useRef(null)
+
+  console.log("Render");
 
   useEffect(() => {
     if (isEditing) {
@@ -47,9 +48,8 @@ const Item = ({ id, value, done }) => {
     }
   }, [isEditing])
 
-  const handleCheckboxChange = ( { target: { checked } }) => {
-    setIsChecked(checked)
-    handleDone(id, checked)
+  const handleCheckboxChange = (evt) => {
+    handleDone(id, evt.target.checked)
   }
 
   const handleEdit = () => {
@@ -79,7 +79,7 @@ const Item = ({ id, value, done }) => {
         type='checkbox'
         className="checkbox"
         onChange={handleCheckboxChange}
-        checked={isChecked}
+        checked={done}
       />
       {
         isEditing ?
@@ -88,7 +88,7 @@ const Item = ({ id, value, done }) => {
             <>
               <input
                 type='text'
-                className={`input${isChecked?' done' : ''}`}
+                className={`input${done?' done' : ''}`}
                 ref={inputRef}
                 onKeyDown={handleKeyDown}
                 defaultValue={value}
@@ -104,7 +104,7 @@ const Item = ({ id, value, done }) => {
             // normal mode
             <>
               <div 
-                className={`text${isChecked?' done' : ''}`} 
+                className={`text${done?' done' : ''}`} 
                 onDoubleClick={handleEdit}
                 >{value}
               </div>
