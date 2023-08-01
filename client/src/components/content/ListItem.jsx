@@ -1,14 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { useState, useContext, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { updateListItem, deleteListItem } from '../../redux/actions/list.action'
 
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import SaveIcon from '@mui/icons-material/Save'
 import CancelIcon from '@mui/icons-material/Cancel'
-
-import Context from '../../context/context'
 
 const styles = css`
   display: grid;
@@ -38,14 +37,11 @@ const styles = css`
     height: 14px;
   }
 `
-export default function Item ({ id, value, done }) {
+export default function ListItem ({ id, done, name }) {
 
   const dispatch = useDispatch()
-  
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef(null)
-
-  console.log("Render");
 
   useEffect(() => {
     if (isEditing) {
@@ -54,6 +50,7 @@ export default function Item ({ id, value, done }) {
   }, [isEditing])
 
   const handleCheckboxChange = (evt) => {
+    dispatch(updateListItem(id, "done", evt.target.checked))
   }
 
   const handleEdit = () => {
@@ -61,6 +58,7 @@ export default function Item ({ id, value, done }) {
   }
 
   const handleSave = async () => {
+    await dispatch(updateListItem(id, "name", inputRef.current.value))
     setIsEditing(false)
   }
 
@@ -68,6 +66,7 @@ export default function Item ({ id, value, done }) {
     setIsEditing(false)
   }
   const handleDelete = () => {
+    dispatch(deleteListItem(id))
   }
 
   const handleKeyDown = (e) => {
@@ -96,7 +95,7 @@ export default function Item ({ id, value, done }) {
                 className={`input${done?' done' : ''}`}
                 ref={inputRef}
                 onKeyDown={handleKeyDown}
-                defaultValue={value}
+                defaultValue={name}
               />
               <div>
                 <SaveIcon fontSize='small' onClick={handleSave} />
@@ -111,7 +110,7 @@ export default function Item ({ id, value, done }) {
               <div 
                 className={`text${done?' done' : ''}`} 
                 onDoubleClick={handleEdit}
-                >{value}
+                >{name}
               </div>
               <div>
                 <EditIcon fontSize='small' onClick={handleEdit} />

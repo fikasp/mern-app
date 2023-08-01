@@ -1,7 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-
 import Button from '@mui/material/Button'
+
+import { useDispatch } from 'react-redux'
+import { readList } from '../../redux/actions/list.action'
 
 const styles = css`
   height: 50px;
@@ -13,9 +15,15 @@ const styles = css`
 
 export default function Footer () {
 
+  const dispatch = useDispatch()
+
+  const handleClick = () => {
+    dispatch(readList())
+  }
+
   return (
     <footer css={styles}>
-      {/* <Button onClick={handleRead}>Update</Button> */}
+      <Button onClick={handleClick}>Update</Button>
     </footer>
   )
 }

@@ -4,7 +4,7 @@
 
 ### Client
 * Confirm modal
-* List reducer
+
 * Auth form
 
 ### Server
@@ -14,4 +14,5 @@
 
 ## History
 
-### 2023-08-01
+### 2023-08-02
+* List and loading reducers

@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { useSelector } from 'react-redux'
 
+import Typography from '@mui/material/Typography'
 import List from '../content/List'
 import Form from '../content/Form'
 
@@ -17,12 +19,28 @@ const styles = css`
 `
 
 export default function Main () {
+  const { isLoading, error } = useSelector(state => state.loading)
 
   return (
     <main css={styles}>
       <section>
-        <Form/>
-        <List/>
+      { 
+        isLoading ? 
+      (
+        <Typography>Ładowanie danych...</Typography>
+      ) 
+      : error ? 
+      (
+        <Typography>Error... {error.message}</Typography>
+      ) 
+      : 
+      (
+        <>
+          <Form/>
+          <List/>
+        </>
+      )
+      }
       </section>
     </main>
   )

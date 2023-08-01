@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux'
 
-import list from './reducers/list.reducer'
+import listReducer from './reducers/list.reducer'
+import loadingReducer from './reducers/loading.reducer'
 
-export default combineReducers({ list })
+export default combineReducers({ 
+  list: listReducer,
+  loading: loadingReducer
+})

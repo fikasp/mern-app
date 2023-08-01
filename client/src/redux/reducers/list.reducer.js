@@ -1,10 +1,10 @@
 import { CREATE, READ, UPDATE, DELETE } from '../actions'
 
-export default (list = [], action) => {
+export default function listReducer (list = [], action) {
 	switch (action.type) {
 		case CREATE:
 			console.log(CREATE)
-			return list
+			return [...list, action.payload]
 			
 		case READ:
 			console.log(READ)
@@ -12,11 +12,11 @@ export default (list = [], action) => {
 
 		case UPDATE:
 			console.log(UPDATE)
-			return list
+			return list.map(item => item.id == action.payload.id? action.payload : item)
 
 		case DELETE:
 			console.log(DELETE)
-			return list
+			return list.filter(item => item.id!== action.payload)
 
 		default:
 			return list

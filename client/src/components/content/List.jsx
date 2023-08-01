@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import Item from './Item'
+import ListItem from './ListItem'
 
 const styles = css`
 	text-align: center;
@@ -15,19 +15,18 @@ const styles = css`
 `
 
 export default function List () {
-	const dispatch = useDispatch()
-	const data = useSelector(store => store.list)
+	const list = useSelector(store => store.list)
 
   return (
 		<ul css={styles}>
 			{
-			Array.isArray(data) && data.length > 0 ? 
+			Array.isArray(list) && list.length > 0 ? 
 			(
-				data.map(item => (
-					<Item 
+				list.map(item => (
+					<ListItem 
 						key={item.id}
 						id={item.id}
-						value={item.value}
+						name={item.name}
 						done={item.done}
 					/>
 				))

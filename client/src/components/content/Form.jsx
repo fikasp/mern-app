@@ -1,11 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
-import TextField from '@mui/material/TextField';
+import { createListItem } from '../../redux/actions/list.action'
+import TextField from '@mui/material/TextField'
 
 const styles = css`
-  margin: 10px;
+  margin-bottom: 10px;
   & input {
     color: white;
   }
@@ -15,28 +17,37 @@ const styles = css`
 `
 
 export default function Form () {
+	const dispatch = useDispatch()
 
-  const [name, setName] = useState("")
+  const initialFormData = {
+    name: ''
+  }
+  const [formData, setFormData] = useState(initialFormData)
+
+  useEffect(() => {
+    console.log(formData)
+  }, [formData])
 
   const handleChange = (evt) => {
-    const value = evt.target.value
-    setName(value)
+    setFormData({...formData, [evt.target.name]: evt.target.value})
   }
 
   const handleKeyDown = (evt) => {
     if (evt.key === "Enter") {
-      setName("")
+      dispatch(createListItem(formData))
+      setFormData(initialFormData)
     }
   }
 
   return (
-		<TextField
+    <TextField
       css={styles}
+      name="name"
       onChange={handleChange} 
       onKeyDown={handleKeyDown}
-      label="Add element"
+      label="Add element do the list"
       variant="outlined"
-      value={name} 
+      value={formData.name} 
     />
 	)
 }
