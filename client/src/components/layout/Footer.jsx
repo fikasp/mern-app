@@ -1,9 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useContext } from 'react';
-import Context from '../../context/context';
 
-// components
 import Button from '@mui/material/Button'
 
 const styles = css`
@@ -14,14 +11,11 @@ const styles = css`
 	align-items: center;
 `
 
-const Footer = () => {
-  const {handleRead} = useContext(Context)
+export default function Footer () {
 
   return (
     <footer css={styles}>
-      <Button onClick={handleRead}>Update</Button>
+      {/* <Button onClick={handleRead}>Update</Button> */}
     </footer>
   )
 }
-
-export default Footer

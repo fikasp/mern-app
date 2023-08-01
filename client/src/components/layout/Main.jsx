@@ -1,9 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useContext } from 'react'
-import Context from '../../context/context';
 
-import Typography from '@mui/material/Typography'
 import List from '../content/List'
 import Form from '../content/Form'
 
@@ -19,32 +16,15 @@ const styles = css`
   }
 `
 
-const Main = () => {
-  const{isLoading,error} = useContext(Context)
+export default function Main () {
 
   return (
     <main css={styles}>
       <section>
-      { 
-        isLoading ? 
-      (
-        <Typography>Ładowanie danych...</Typography>
-      ) 
-      : error ? 
-      (
-        <Typography>Error... {error.message}</Typography>
-      ) 
-      : 
-      (
-        <>
-          <Form/>
-          <List/>
-        </>
-      )
-      }
+        <Form/>
+        <List/>
       </section>
     </main>
   )
 }
 
-export default Main

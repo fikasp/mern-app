@@ -14,7 +14,7 @@ const styles = (backgroundColor) => css`
 	transition: .5s;
 `
 
-const Header = ({ title }) => {
+export default function Header ({ title }) {
 	
 	const [backgroundColor, setBackgroundColor] = useState('gray');
 
@@ -32,5 +32,3 @@ const Header = ({ title }) => {
 		<header css={styles(backgroundColor)}>{title}</header>
 	)
 }
-
-export default Header

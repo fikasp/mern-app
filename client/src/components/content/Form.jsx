@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { useState, useContext } from 'react';
+import { useState } from 'react';
+
 import TextField from '@mui/material/TextField';
-import Context from '../../context/context';
 
 const styles = css`
   margin: 10px;
@@ -14,10 +14,9 @@ const styles = css`
   }
 `
 
-const Form = () => {
+export default function Form () {
 
   const [name, setName] = useState("")
-  const {handleCreate} = useContext(Context)
 
   const handleChange = (evt) => {
     const value = evt.target.value
@@ -26,7 +25,6 @@ const Form = () => {
 
   const handleKeyDown = (evt) => {
     if (evt.key === "Enter") {
-      handleCreate(name)
       setName("")
     }
   }
@@ -42,5 +40,3 @@ const Form = () => {
     />
 	)
 }
-
-export default Form

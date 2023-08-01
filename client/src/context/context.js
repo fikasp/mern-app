@@ -1,14 +1,14 @@
-import { createContext } from "react"
-import { useCrud } from './useCrud'
+import { createContext, useState } from "react"
 
 const Context = createContext()
 export default Context
 
-export const Provider = ({ children }) => {
+export const ContextProvider = ({ children }) => {
+  const [context, setContext] = useState()
 
   return (
     <Context.Provider 
-      value={{ ...useCrud() }}>
+      value={{ context, setContext }}>
       {children}
     </Context.Provider>
   )

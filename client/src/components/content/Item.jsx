@@ -1,10 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { useState, useContext, useRef, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import SaveIcon from '@mui/icons-material/Save'
 import CancelIcon from '@mui/icons-material/Cancel'
+
 import Context from '../../context/context'
 
 const styles = css`
@@ -35,8 +38,10 @@ const styles = css`
     height: 14px;
   }
 `
-const Item = ({ id, value, done }) => {
-  const { handleUpdate, handleDelete, handleDone } = useContext(Context)
+export default function Item ({ id, value, done }) {
+
+  const dispatch = useDispatch()
+  
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef(null)
 
@@ -49,7 +54,6 @@ const Item = ({ id, value, done }) => {
   }, [isEditing])
 
   const handleCheckboxChange = (evt) => {
-    handleDone(id, evt.target.checked)
   }
 
   const handleEdit = () => {
@@ -57,12 +61,13 @@ const Item = ({ id, value, done }) => {
   }
 
   const handleSave = async () => {
-    await handleUpdate(id, inputRef.current.value)
     setIsEditing(false)
   }
 
   const handleCancel = () => {
     setIsEditing(false)
+  }
+  const handleDelete = () => {
   }
 
   const handleKeyDown = (e) => {
@@ -110,7 +115,7 @@ const Item = ({ id, value, done }) => {
               </div>
               <div>
                 <EditIcon fontSize='small' onClick={handleEdit} />
-                <DeleteIcon fontSize='small' onClick={handleDelete(id)} />
+                <DeleteIcon fontSize='small' onClick={handleDelete} />
               </div>
             </>
           )
@@ -118,5 +123,3 @@ const Item = ({ id, value, done }) => {
     </li>
   )
 }
-
-export default Item

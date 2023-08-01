@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+import { css } from '@emotion/react'
 
 const styles = (color) => css`
 	height: 50vh;
@@ -11,12 +11,12 @@ const styles = (color) => css`
 	flex-direction: column;
 	text-align: center;
 	display: flex;
-`;
+`
 
-const Container = ({ color, children }) => (
-	<div css={styles(color)}>
-		{ children }
-	</div>
-)
-
-export default Container
+export default function Container ({ color, children }) {
+	return (
+		<div css={styles(color)}>
+			{ children }
+		</div>
+	)
+}

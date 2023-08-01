@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import { useContext } from 'react';
-import Context from '../../context/context';
+import { css } from '@emotion/react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import Item from './Item'
 
 const styles = css`
@@ -14,8 +14,9 @@ const styles = css`
 	gap: 10px;
 `
 
-const List = () => {
-	const {data} = useContext(Context)
+export default function List () {
+	const dispatch = useDispatch()
+	const data = useSelector(store => store.list)
 
   return (
 		<ul css={styles}>
@@ -39,5 +40,3 @@ const List = () => {
 		</ul>
 	)
 }
-
-export default List

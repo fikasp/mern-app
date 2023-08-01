@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import * as service from '../services/service'
 
-export const useCrud = () => {
+export const useList = () => {
   const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
