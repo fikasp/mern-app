@@ -1,24 +1,27 @@
-import { CREATE, READ, UPDATE, DELETE } from '../actions'
+import { LIST_CREATE, LIST_READ, LIST_UPDATE, LIST_DELETE } from '../actions'
 
-export default function listReducer (list = [], action) {
+const initialState = []
+
+export default function listReducer(state = initialState, action) {
 	switch (action.type) {
-		case CREATE:
-			console.log(CREATE)
-			return [...list, action.payload]
-			
-		case READ:
-			console.log(READ)
+
+		case LIST_READ:
+			console.log(LIST_READ)
 			return action.payload
 
-		case UPDATE:
-			console.log(UPDATE)
-			return list.map(item => item.id == action.payload.id? action.payload : item)
+		case LIST_CREATE:
+			console.log(LIST_CREATE)
+			return [...state, action.payload]
 
-		case DELETE:
-			console.log(DELETE)
-			return list.filter(item => item.id!== action.payload)
+		case LIST_UPDATE:
+			console.log(LIST_UPDATE)
+			return state.map(item => item.id === action.payload.id ? action.payload : item)
+
+		case LIST_DELETE:
+			console.log(LIST_DELETE)
+			return state.filter(item => item.id !== action.payload)
 
 		default:
-			return list
+			return state
 	}
 }

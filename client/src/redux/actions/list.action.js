@@ -1,21 +1,11 @@
 import * as api from '../../api/list.api'
-import { CREATE, READ, UPDATE, DELETE, LOADING, ERROR } from '../actions'
-
-export const createListItem = (item) => async (dispatch) => {
-  try {
-    const { data } = await api.createListItem(item)
-    dispatch({ type: CREATE, payload: data })
-
-  } catch (err) {
-    console.error(err)
-  }
-}
+import { LIST_CREATE, LIST_READ, LIST_UPDATE, LIST_DELETE, LOADING, ERROR } from '../actions'
 
 export const readList = () => async (dispatch) => {
   try {
     dispatch({ type: LOADING, payload: true })
     const { data } = await api.readList()
-    dispatch({ type: READ, payload: data })
+    dispatch({ type: LIST_READ, payload: data })
     dispatch({ type: LOADING, payload: false })
 
   } catch (err) {
@@ -25,10 +15,20 @@ export const readList = () => async (dispatch) => {
   }
 }
 
+export const createListItem = (item) => async (dispatch) => {
+  try {
+    const { data } = await api.createListItem(item)
+    dispatch({ type: LIST_CREATE, payload: data })
+
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const updateListItem = (id, key, value) => async (dispatch) => {
   try {
-    const { data } = await api.updateListItem(id, {[key]: value})
-    dispatch({ type: UPDATE, payload: data })
+    const { data } = await api.updateListItem(id, { [key]: value })
+    dispatch({ type: LIST_UPDATE, payload: data })
 
   } catch (err) {
     console.error(err)
@@ -38,7 +38,7 @@ export const updateListItem = (id, key, value) => async (dispatch) => {
 export const deleteListItem = (id) => async (dispatch) => {
   try {
     await api.deleteListItem(id)
-    dispatch({ type: DELETE, payload: id })
+    dispatch({ type: LIST_DELETE, payload: id })
 
   } catch (err) {
     console.error(err)

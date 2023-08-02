@@ -4,7 +4,7 @@ const Context = createContext()
 export default Context
 
 export const ContextProvider = ({ children }) => {
-  const [context, setContext] = useState()
+  const [context, setContext] = useState([])
 
   return (
     <Context.Provider 

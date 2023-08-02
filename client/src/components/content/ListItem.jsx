@@ -9,6 +9,8 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import SaveIcon from '@mui/icons-material/Save'
 import CancelIcon from '@mui/icons-material/Cancel'
 
+import ConfirmModal from '../layout/ConfirmModal'
+
 const styles = css`
   display: grid;
   grid-template-columns: 40px 145px 45px;
@@ -41,6 +43,7 @@ export default function ListItem ({ id, done, name }) {
 
   const dispatch = useDispatch()
   const [isEditing, setIsEditing] = useState(false)
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false)
   const inputRef = useRef(null)
 
   useEffect(() => {
@@ -65,8 +68,22 @@ export default function ListItem ({ id, done, name }) {
   const handleCancel = () => {
     setIsEditing(false)
   }
+
   const handleDelete = () => {
+    if (done) {
+      dispatch(deleteListItem(id))
+    } else {
+      setShowDeleteConfirmation(true)
+    }
+  }
+
+  const handleConfirmDelete = () => {
     dispatch(deleteListItem(id))
+    setShowDeleteConfirmation(false)
+  }
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirmation(false)
   }
 
   const handleKeyDown = (e) => {
@@ -119,6 +136,13 @@ export default function ListItem ({ id, done, name }) {
             </>
           )
       }
+      <ConfirmModal
+        title="Confirmation"
+        text="Are you sure you want to delete this item?"
+        open={showDeleteConfirmation}
+        onNo={handleCancelDelete}
+        onYes={handleConfirmDelete}
+      />
     </li>
   )
 }

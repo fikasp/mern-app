@@ -3,7 +3,7 @@
 ## Task to do
 
 ### Client
-* Confirm modal
+
 
 * Auth form
 
@@ -15,4 +15,5 @@
 ## History
 
 ### 2023-08-02
-* List and loading reducers
+* Redux with list and loading reducers
+* Confirm modal for delete item
