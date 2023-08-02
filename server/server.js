@@ -1,11 +1,13 @@
 import express from 'express'
+import mongoose from 'mongoose'
+
 import useErrors from './middlewares/errors.js'
 import useLoggers from './middlewares/loggers.js'
 import useParsers from './middlewares/parsers.js'
 import useStatic from './middlewares/static.js'
 import useListRouter from './routes/list.routes.js'
+import { PORT, CONNECTION_URL } from './config/config.js'
 
-const port = process.env.PORT || 5000
 const app = express()
 
 useParsers(app)
@@ -16,10 +18,16 @@ useListRouter(app)
 useStatic(app)
 useErrors(app)
 
-app.listen(port, () => {
-  console.log(`
+try {
+	await mongoose.connect(CONNECTION_URL)
+
+	app.listen(PORT, () => {
+		console.log(`
 Server started...
-http://localhost:${port}`)
-})
+http://localhost:${PORT}`)
+	})
+} catch (err) {
+	console.error(err)
+}
 
 export default app

@@ -14,7 +14,11 @@
 
 ## History
 
-### 2023-08-02 (1.0.0)
+### 2023-08-02 (1.1.0)
+
+- Connection to MongoDB
+
+### 2023-08-01 (1.0.0)
 
 - Add redux with list and loading reducers
 - Add confirm modal for delete item

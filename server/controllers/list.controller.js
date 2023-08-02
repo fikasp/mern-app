@@ -1,9 +1,14 @@
 import * as models from '../models/models.js'
+import ListItem from '../models/list.model.js'
 const path = './models/data.json'
 
 export async function createListItem(req, res) {
 	try {
 		const { name } = req.body
+
+		const newListItem = new ListItem({ name })
+		await newListItem.save()
+
 		const data = await models.read(path)
 
 		const newID = models.getMaxId(data) + 1
@@ -11,22 +16,26 @@ export async function createListItem(req, res) {
 
 		const newData = [...data, newItem]
 		await models.write(path, newData)
+		res.status(201).json(newItem)
 
 		console.log(`Item ${newItem.id} added...`)
 		console.log(newItem)
-		res.json(newItem)
 	} catch (err) {
-		next(err)
+		res.status(409).json({ message: err.message })
 	}
 }
 
 export async function readList(req, res, next) {
 	try {
+		const listItems = await ListItem.find()
+		console.log(listItems)
+
 		const list = await models.read(path)
-		res.json(list)
+		res.status(200).json(list)
+
 		console.log(list)
 	} catch (err) {
-		next(err)
+		res.status(404).json({ message: err.message })
 	}
 }
 
@@ -41,6 +50,7 @@ export async function readListItem(req, res, next) {
 			throw error
 		}
 		res.json(listItem)
+
 		console.log(listItem)
 	} catch (err) {
 		next(err)

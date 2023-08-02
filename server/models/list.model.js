@@ -1,8 +1,14 @@
 import mongoose from 'mongoose'
 
 const listItemSchema = mongoose.Schema({
-	name: String,
-	done: Boolean,
+	name: {
+		type: String,
+		required: true,
+	},
+	done: {
+		type: Boolean,
+		default: false,
+	},
 })
 
 const ListItem = mongoose.model('ListItem', listItemSchema)
