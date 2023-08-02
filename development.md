@@ -13,8 +13,8 @@
 ## History
 
 ### 2023-08-02 (1.0.0)
-* Redux with list and loading reducers
-* Confirm modal for delete item
+* Add redux with list and loading reducers
+* Add confirm modal for delete item
 
 ### 2023-07-18
 * Build client and server application
