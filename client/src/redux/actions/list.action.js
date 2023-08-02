@@ -15,6 +15,16 @@ export const readList = () => async (dispatch) => {
   }
 }
 
+export const updateList = () => async (dispatch) => {
+  try {
+    const { data } = await api.readList()
+    dispatch({ type: LIST_READ, payload: data })
+
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const createListItem = (item) => async (dispatch) => {
   try {
     const { data } = await api.createListItem(item)

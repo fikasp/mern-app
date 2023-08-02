@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import Button from '@mui/material/Button'
 
 import { useDispatch } from 'react-redux'
-import { readList } from '../../redux/actions/list.action'
+import { updateList } from '../../redux/actions/list.action'
 
 const styles = css`
   height: 50px;
@@ -18,7 +18,7 @@ export default function Footer () {
   const dispatch = useDispatch()
 
   const handleClick = () => {
-    dispatch(readList())
+    dispatch(updateList())
   }
 
   return (
