@@ -1,9 +1,7 @@
-import logger from '../utils/logger.js'
 import * as models from '../models/models.js'
 const path = './models/data.json'
 
 export async function createListItem(req, res) {
-  logger(createListItem)
   try {
     const { name } = req.body
     const data = await models.read(path)
@@ -23,7 +21,6 @@ export async function createListItem(req, res) {
 }
 
 export async function readList(req, res, next) {
-  logger(readList)
   try {
     const list = await models.read(path)
     res.json(list)
@@ -34,7 +31,6 @@ export async function readList(req, res, next) {
 }
 
 export async function readListItem(req, res, next) {
-  logger(readListItem)
   const { id } = req.params
   try {
     const list = await models.read(path)
@@ -52,7 +48,6 @@ export async function readListItem(req, res, next) {
 }
 
 export async function updateListItem(req, res, next) {
-  logger(updateListItem)
   const { id } = req.params
   const updatedData = req.body
   console.log(updatedData);
