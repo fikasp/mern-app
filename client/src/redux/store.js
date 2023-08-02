@@ -3,9 +3,9 @@ import thunk from 'redux-thunk'
 import reducers from './reducers'
 
 const store = configureStore({
-  reducer: reducers,
-  middleware: [thunk], 
-  devTools: true 
+	reducer: reducers,
+	middleware: [thunk],
+	devTools: true,
 })
 
 export default store

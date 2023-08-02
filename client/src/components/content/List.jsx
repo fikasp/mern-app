@@ -14,28 +14,21 @@ const styles = css`
 	gap: 10px;
 `
 
-export default function List () {
-	const list = useSelector(store => store.list)
+export default function List() {
+	const list = useSelector((store) => store.list)
 
-  return (
+	return (
 		<ul css={styles}>
-			{
-			Array.isArray(list) && list.length > 0 ? 
-			(
-				list.map(item => (
-					<ListItem 
-						key={item.id}
-						id={item.id}
-						name={item.name}
-						done={item.done}
-					/>
-				))
-			) 
-			: 
-			(
-				"List is empty"
-			)
-			}
+			{Array.isArray(list) && list.length > 0
+				? list.map((item) => (
+						<ListItem
+							key={item.id}
+							id={item.id}
+							name={item.name}
+							done={item.done}
+						/>
+				  ))
+				: 'List is empty'}
 		</ul>
 	)
 }

@@ -13,10 +13,6 @@ const styles = (color) => css`
 	display: flex;
 `
 
-export default function Container ({ color, children }) {
-	return (
-		<div css={styles(color)}>
-			{ children }
-		</div>
-	)
+export default function Container({ color, children }) {
+	return <div css={styles(color)}>{children}</div>
 }

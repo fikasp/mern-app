@@ -4,7 +4,6 @@ const initialState = []
 
 export default function listReducer(state = initialState, action) {
 	switch (action.type) {
-		
 		case LIST_READ:
 			console.log(LIST_READ, action.payload)
 			return action.payload

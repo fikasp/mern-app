@@ -11,24 +11,21 @@ import Main from './components/layout/Main'
 import { Global } from '@emotion/react'
 import global from './styles/global'
 
+export default function App() {
+	const dispatch = useDispatch()
 
-export default function App () {
-
-  const dispatch = useDispatch()
-
-	useEffect( () => {
+	useEffect(() => {
 		dispatch(readList())
+	}, [dispatch])
 
-	},[dispatch])
-
-  return (
-    <ContextProvider>
-      <Global styles={global} />
-      <Container color="#333">
-        <Header title="MERN APP"/>
-        <Main/>
-        <Footer/>
-      </Container>
-    </ContextProvider>
-  )
+	return (
+		<ContextProvider>
+			<Global styles={global} />
+			<Container color="#333">
+				<Header title="MERN APP" />
+				<Main />
+				<Footer />
+			</Container>
+		</ContextProvider>
+	)
 }

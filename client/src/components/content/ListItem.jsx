@@ -12,137 +12,132 @@ import CancelIcon from '@mui/icons-material/Cancel'
 import ConfirmModal from '../layout/ConfirmModal'
 
 const styles = css`
-  display: grid;
-  grid-template-columns: 40px 145px 45px;
-  align-items: center;
+	display: grid;
+	grid-template-columns: 40px 145px 45px;
+	align-items: center;
 	padding: 4px;
-  & * {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+	& * {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 	& .text {
-    line-height: 15px;
-    font-size: 16px;
+		line-height: 15px;
+		font-size: 16px;
 		color: white;
 	}
-  & .input {
-    font-size: 16px;
+	& .input {
+		font-size: 16px;
 		background-color: #222;
 		color: white;
 	}
-  & .done {
-    text-decoration: line-through;
-    color: #888;
-  }
-  & .checkbox {
-    height: 14px;
-  }
+	& .done {
+		text-decoration: line-through;
+		color: #888;
+	}
+	& .checkbox {
+		height: 14px;
+	}
 `
-export default function ListItem ({ id, done, name }) {
+export default function ListItem({ id, done, name }) {
+	const dispatch = useDispatch()
+	const [isEditing, setIsEditing] = useState(false)
+	const [showConfirmDialog, setShowConfirmDialog] = useState(false)
+	const inputRef = useRef(null)
 
-  const dispatch = useDispatch()
-  const [isEditing, setIsEditing] = useState(false)
-  const [showConfirmDialog, setShowConfirmDialog] = useState(false)
-  const inputRef = useRef(null)
+	useEffect(() => {
+		if (isEditing) {
+			inputRef.current.select()
+		}
+	}, [isEditing])
 
-  useEffect(() => {
-    if (isEditing) {
-      inputRef.current.select()
-    }
-  }, [isEditing])
+	const handleCheckboxChange = (evt) => {
+		dispatch(updateListItem(id, 'done', evt.target.checked))
+	}
 
-  const handleCheckboxChange = (evt) => {
-    dispatch(updateListItem(id, "done", evt.target.checked))
-  }
+	const handleEdit = () => {
+		setIsEditing(true)
+	}
 
-  const handleEdit = () => {
-    setIsEditing(true)
-  }
+	const handleSave = async () => {
+		await dispatch(updateListItem(id, 'name', inputRef.current.value))
+		setIsEditing(false)
+	}
 
-  const handleSave = async () => {
-    await dispatch(updateListItem(id, "name", inputRef.current.value))
-    setIsEditing(false)
-  }
+	const handleCancel = () => {
+		setIsEditing(false)
+	}
 
-  const handleCancel = () => {
-    setIsEditing(false)
-  }
+	const handleDelete = () => {
+		if (done) {
+			dispatch(deleteListItem(id))
+		} else {
+			setShowConfirmDialog(true)
+		}
+	}
 
-  const handleDelete = () => {
-    if (done) {
-      dispatch(deleteListItem(id))
-    } else {
-      setShowConfirmDialog(true)
-    }
-  }
+	const handleConfirmDelete = () => {
+		dispatch(deleteListItem(id))
+		setShowConfirmDialog(false)
+	}
 
-  const handleConfirmDelete = () => {
-    dispatch(deleteListItem(id))
-    setShowConfirmDialog(false)
-  }
+	const handleCancelDelete = () => {
+		setShowConfirmDialog(false)
+	}
 
-  const handleCancelDelete = () => {
-    setShowConfirmDialog(false)
-  }
+	const handleKeyDown = (e) => {
+		if (e.key === 'Enter') {
+			handleSave()
+		} else if (e.key === 'Escape') {
+			handleCancel()
+		}
+	}
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleSave()
-    } else if (e.key === 'Escape') {
-      handleCancel()
-    }
-  }
-
-  return (
-    <li css={styles}>
-      <input
-        type='checkbox'
-        className="checkbox"
-        onChange={handleCheckboxChange}
-        checked={done}
-      />
-      {
-        isEditing ?
-        (
-          // edit mode
-          <>
-            <input
-              type='text'
-              className={`input${done?' done' : ''}`}
-              ref={inputRef}
-              onKeyDown={handleKeyDown}
-              defaultValue={name}
-            />
-            <div>
-              <SaveIcon fontSize='small' onClick={handleSave} />
-              <CancelIcon fontSize='small' onClick={handleCancel} />
-            </div>
-          </>
-        )
-        :
-        (
-          // normal mode
-          <>
-            <div 
-              className={`text${done?' done' : ''}`} 
-              onDoubleClick={handleEdit}
-              >{name}
-            </div>
-            <div>
-              <EditIcon fontSize='small' onClick={handleEdit} />
-              <DeleteIcon fontSize='small' onClick={handleDelete} />
-            </div>
-          </>
-        )
-      }
-      <ConfirmModal
-        title="Delete confirmation"
-        text="Are you sure you want to delete this item?"
-        open={showConfirmDialog}
-        onNo={handleCancelDelete}
-        onYes={handleConfirmDelete}
-      />
-    </li>
-  )
+	return (
+		<li css={styles}>
+			<input
+				type="checkbox"
+				className="checkbox"
+				onChange={handleCheckboxChange}
+				checked={done}
+			/>
+			{isEditing ? (
+				// edit mode
+				<>
+					<input
+						type="text"
+						className={`input${done ? ' done' : ''}`}
+						ref={inputRef}
+						onKeyDown={handleKeyDown}
+						defaultValue={name}
+					/>
+					<div>
+						<SaveIcon fontSize="small" onClick={handleSave} />
+						<CancelIcon fontSize="small" onClick={handleCancel} />
+					</div>
+				</>
+			) : (
+				// normal mode
+				<>
+					<div
+						className={`text${done ? ' done' : ''}`}
+						onDoubleClick={handleEdit}
+					>
+						{name}
+					</div>
+					<div>
+						<EditIcon fontSize="small" onClick={handleEdit} />
+						<DeleteIcon fontSize="small" onClick={handleDelete} />
+					</div>
+				</>
+			)}
+			<ConfirmModal
+				title="Delete confirmation"
+				text="Are you sure you want to delete this item?"
+				open={showConfirmDialog}
+				onNo={handleCancelDelete}
+				onYes={handleConfirmDelete}
+			/>
+		</li>
+	)
 }
