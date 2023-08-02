@@ -19,7 +19,7 @@ const styles = css`
 `
 
 export default function Main () {
-  const { isLoading, error } = useSelector(state => state.loading)
+  const { isLoading, error } = useSelector(state => state.api)
 
   return (
     <main css={styles}>

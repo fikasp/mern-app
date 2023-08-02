@@ -1,17 +1,17 @@
 import * as api from '../../api/list.api'
-import { LIST_CREATE, LIST_READ, LIST_UPDATE, LIST_DELETE, LOADING, ERROR } from '../actions'
+import { LIST_CREATE, LIST_READ, LIST_UPDATE, LIST_DELETE, API_LOADING, API_ERROR } from '../actions'
 
 export const readList = () => async (dispatch) => {
   try {
-    dispatch({ type: LOADING, payload: true })
+    dispatch({ type: API_LOADING, payload: true })
     const { data } = await api.readList()
     dispatch({ type: LIST_READ, payload: data })
-    dispatch({ type: LOADING, payload: false })
+    dispatch({ type: API_LOADING, payload: false })
 
   } catch (err) {
     console.error(err)
-    dispatch({ type: LOADING, payload: false })
-    dispatch({ type: ERROR, payload: err })
+    dispatch({ type: API_LOADING, payload: false })
+    dispatch({ type: API_ERROR, payload: err })
   }
 }
 

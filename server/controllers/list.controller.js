@@ -13,6 +13,7 @@ export async function createListItem(req, res) {
     await models.write(path, newData)
 
     console.log(`Item ${newItem.id} added...`)
+    console.log(newItem)
     res.json(newItem)
     
   } catch (err) {
@@ -50,7 +51,6 @@ export async function readListItem(req, res, next) {
 export async function updateListItem(req, res, next) {
   const { id } = req.params
   const updatedData = req.body
-  console.log(updatedData);
   try {
     const list = await models.read(path)
     const itemIndex = list.findIndex(item => item.id === Number(id))

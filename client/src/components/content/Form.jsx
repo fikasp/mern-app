@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { createListItem } from '../../redux/actions/list.action'
@@ -17,20 +17,16 @@ const styles = css`
   }
 `
 
-export default function Form () {
-	const dispatch = useDispatch()
+export default function Form() {
+  const dispatch = useDispatch()
 
   const initialFormData = {
     name: ''
   }
   const [formData, setFormData] = useState(initialFormData)
 
-  useEffect(() => {
-    console.log(formData)
-  }, [formData])
-
   const handleChange = (evt) => {
-    setFormData({...formData, [evt.target.name]: evt.target.value})
+    setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
 
   const handleKeyDown = (evt) => {
@@ -44,11 +40,11 @@ export default function Form () {
     <TextField
       css={styles}
       name="name"
-      onChange={handleChange} 
+      onChange={handleChange}
       onKeyDown={handleKeyDown}
       label="Add element do the list"
       variant="outlined"
-      value={formData.name} 
+      value={formData.name}
     />
-	)
+  )
 }

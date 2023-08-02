@@ -43,7 +43,7 @@ export default function ListItem ({ id, done, name }) {
 
   const dispatch = useDispatch()
   const [isEditing, setIsEditing] = useState(false)
-  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false)
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false)
   const inputRef = useRef(null)
 
   useEffect(() => {
@@ -73,17 +73,17 @@ export default function ListItem ({ id, done, name }) {
     if (done) {
       dispatch(deleteListItem(id))
     } else {
-      setShowDeleteConfirmation(true)
+      setShowConfirmDialog(true)
     }
   }
 
   const handleConfirmDelete = () => {
     dispatch(deleteListItem(id))
-    setShowDeleteConfirmation(false)
+    setShowConfirmDialog(false)
   }
 
   const handleCancelDelete = () => {
-    setShowDeleteConfirmation(false)
+    setShowConfirmDialog(false)
   }
 
   const handleKeyDown = (e) => {
@@ -104,42 +104,42 @@ export default function ListItem ({ id, done, name }) {
       />
       {
         isEditing ?
-          (
-            // edit mode
-            <>
-              <input
-                type='text'
-                className={`input${done?' done' : ''}`}
-                ref={inputRef}
-                onKeyDown={handleKeyDown}
-                defaultValue={name}
-              />
-              <div>
-                <SaveIcon fontSize='small' onClick={handleSave} />
-                <CancelIcon fontSize='small' onClick={handleCancel} />
-              </div>
-            </>
-          )
-          :
-          (
-            // normal mode
-            <>
-              <div 
-                className={`text${done?' done' : ''}`} 
-                onDoubleClick={handleEdit}
-                >{name}
-              </div>
-              <div>
-                <EditIcon fontSize='small' onClick={handleEdit} />
-                <DeleteIcon fontSize='small' onClick={handleDelete} />
-              </div>
-            </>
-          )
+        (
+          // edit mode
+          <>
+            <input
+              type='text'
+              className={`input${done?' done' : ''}`}
+              ref={inputRef}
+              onKeyDown={handleKeyDown}
+              defaultValue={name}
+            />
+            <div>
+              <SaveIcon fontSize='small' onClick={handleSave} />
+              <CancelIcon fontSize='small' onClick={handleCancel} />
+            </div>
+          </>
+        )
+        :
+        (
+          // normal mode
+          <>
+            <div 
+              className={`text${done?' done' : ''}`} 
+              onDoubleClick={handleEdit}
+              >{name}
+            </div>
+            <div>
+              <EditIcon fontSize='small' onClick={handleEdit} />
+              <DeleteIcon fontSize='small' onClick={handleDelete} />
+            </div>
+          </>
+        )
       }
       <ConfirmModal
-        title="Confirmation"
+        title="Delete confirmation"
         text="Are you sure you want to delete this item?"
-        open={showDeleteConfirmation}
+        open={showConfirmDialog}
         onNo={handleCancelDelete}
         onYes={handleConfirmDelete}
       />
