@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/700.css';
+import { css } from '@emotion/react'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/700.css'
 
 const global = css`
 	* {
@@ -17,14 +17,14 @@ const global = css`
 		box-sizing: border-box;
 		border-spacing: 0;
 	}
-  html {
+	html {
 		color: white;
-    background-color: black;
-    font-family: 'Roboto', sans-serif;
+		background-color: black;
+		font-family: 'Roboto', sans-serif;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		height: 100vh;
-  }
+	}
 `
 export default global

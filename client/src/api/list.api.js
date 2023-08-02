@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { apiUrl } from '../config/api'
+import { API_URL } from '../config/api'
 
-const url = `${apiUrl}/list`
+const url = `${API_URL}/list`
 
 export const readList = () => axios.get(url)
 export const createListItem = (newItem) => axios.post(url, newItem)

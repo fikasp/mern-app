@@ -4,7 +4,7 @@ const initialState = []
 
 export default function listReducer(state = initialState, action) {
 	switch (action.type) {
-
+		
 		case LIST_READ:
 			console.log(LIST_READ, action.payload)
 			return action.payload
@@ -15,11 +15,13 @@ export default function listReducer(state = initialState, action) {
 
 		case LIST_UPDATE:
 			console.log(LIST_UPDATE, action.payload)
-			return state.map(item => item.id === action.payload.id ? action.payload : item)
+			return state.map((item) =>
+				item.id === action.payload.id ? action.payload : item
+			)
 
 		case LIST_DELETE:
 			console.log(LIST_DELETE, action.payload)
-			return state.filter(item => item.id !== action.payload)
+			return state.filter((item) => item.id !== action.payload)
 
 		default:
 			return state

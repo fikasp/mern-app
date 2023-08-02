@@ -9,7 +9,7 @@ const clientBuildPath = join(__dirname, '../../client/build')
 export default function useStatic(app) {
 	app.use(express.static(clientBuildPath))
 
-  app.use((req, res) => {
+	app.use((req, res) => {
 		res.sendFile(join(clientBuildPath, 'index.html'))
 	})
 }

@@ -9,5 +9,5 @@ router.patch('/:id', list.updateListItem)
 router.delete('/:id', list.deleteListItem)
 
 export default function useListRouter(app) {
-  app.use('/api/list', router)
+	app.use('/api/list', router)
 }

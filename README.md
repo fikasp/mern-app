@@ -1,4 +1,5 @@
 # MERN app
+
 Simple MongoDB, Express, React and Node.js app.
 
 ## Requirements
@@ -25,5 +26,3 @@ To install the project on your local machine, follow these steps:
 ## License
 
 This project is licensed under the MIT License.
-
-
