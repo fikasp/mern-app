@@ -4,10 +4,11 @@ import Button from '@mui/material/Button'
 
 import { useDispatch } from 'react-redux'
 import { updateList } from '../../redux/actions/list.action'
+import { headerHeight } from '../../styles/variables'
 
 const styles = css`
-	height: 50px;
-	background-color: #444;
+	height: ${headerHeight}px;
+	background-color: #333;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -22,7 +23,7 @@ export default function Footer() {
 
 	return (
 		<footer css={styles}>
-			<Button onClick={handleClick}>Update</Button>
+			<Button variant="contained" onClick={handleClick}>Update data</Button>
 		</footer>
 	)
 }

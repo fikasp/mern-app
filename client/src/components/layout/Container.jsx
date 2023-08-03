@@ -1,12 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { appHeight, appWidth, appMinWidth, appMaxWidth } from '../../styles/variables'
 
 const styles = (color) => css`
-	height: 50vh;
-	width: 50vw;
-	min-width: 300px;
+	height: ${appHeight}vh;
+	width: ${appWidth}vw;
+	min-width: ${appMinWidth}px;
+	max-width: ${appMaxWidth}px;
 	background-color: ${color};
-	border-radius: 10px;
+	border-radius: 5px;
 	overflow: hidden;
 	flex-direction: column;
 	text-align: center;

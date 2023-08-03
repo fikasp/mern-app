@@ -1,19 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { useSelector } from 'react-redux'
+import { appWidth, appMinWidth, appMaxWidth, headerHeight } from '../../styles/variables'
 
 import Typography from '@mui/material/Typography'
 import List from '../content/List'
 import Form from '../content/Form'
 
 const styles = css`
-	height: calc(100% - 100px);
+	height: calc(100% - ${headerHeight*2}px);
 	overflow-x: hidden;
 	overflow-y: auto;
 
 	& > section {
-		width: 50vw;
-		min-width: 300px;
+		width: ${appWidth}vw;
+		min-width: ${appMinWidth}px;
+		max-width: ${appMaxWidth}px;
 		padding: 10px;
 	}
 `

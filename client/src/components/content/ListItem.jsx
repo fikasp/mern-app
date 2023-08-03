@@ -13,7 +13,7 @@ import ConfirmModal from '../layout/ConfirmModal'
 
 const styles = css`
 	display: grid;
-	grid-template-columns: 40px 145px 45px;
+	grid-template-columns: 40px 240px 50px;
 	align-items: center;
 	padding: 4px;
 	& * {
