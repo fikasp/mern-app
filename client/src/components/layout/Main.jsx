@@ -3,27 +3,23 @@ import { css } from '@emotion/react'
 import { useSelector } from 'react-redux'
 import { Typography } from '@mui/material'
 
-import {
-	appWidth,
-	appHeight,
-	appMinWidth,
-	appMaxWidth,
-	headerHeight,
-} from '../../styles/variables'
+import { width, height } from '../../styles/variables'
 import List from '../content/List'
 import Form from '../content/ListForm'
 
 const styles = css`
-	min-height: calc(${appHeight}vh - ${headerHeight * 2}px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex-grow: 1;
+
+	width: ${width.app}vw;
+	min-width: ${width.min}px;
+	max-width: ${width.max}px;
+	padding: 20px;
+	
 	overflow-x: hidden;
 	overflow-y: auto;
-
-	section {
-		width: ${appWidth}vw;
-		min-width: ${appMinWidth}px;
-		max-width: ${appMaxWidth}px;
-		padding: 20px;
-	}
 `
 
 export default function Main() {
@@ -31,18 +27,16 @@ export default function Main() {
 
 	return (
 		<main css={styles}>
-			<section>
-				{isLoading ? (
-					<Typography>Ładowanie danych...</Typography>
-				) : error ? (
-					<Typography>Error... {error.message}</Typography>
-				) : (
-					<>
-						<Form />
-						<List />
-					</>
-				)}
-			</section>
+			{isLoading ? (
+				<Typography>Ładowanie danych...</Typography>
+			) : error ? (
+				<Typography>Error... {error.message}</Typography>
+			) : (
+				<>
+					<Form />
+					<List />
+				</>
+			)}
 		</main>
 	)
 }

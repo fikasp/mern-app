@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux'
 import ListItem from './ListItem'
 
 const styles = css`
-	text-align: center;
-	overflow: auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	overflow: auto;
+	text-align: center;
 	padding: 10px;
 	gap: 10px;
 `

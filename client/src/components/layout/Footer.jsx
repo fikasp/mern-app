@@ -5,14 +5,16 @@ import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 
 import { updateList } from '../../redux/actions/list.action'
-import { headerHeight } from '../../styles/variables'
+import { height } from '../../styles/variables'
 
 const styles = css`
-	height: ${headerHeight}px;
-	background-color: #333;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-shrink: 0;
+	
+	height: ${height.bar}px;
+	background-color: #333;
 `
 
 export default function Footer() {
@@ -20,7 +22,7 @@ export default function Footer() {
 	const location = useLocation()
 	const currentPath = location.pathname
 
-	console.log(currentPath);
+	console.log(currentPath)
 
 	const handleClick = () => {
 		dispatch(updateList())

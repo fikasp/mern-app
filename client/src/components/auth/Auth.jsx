@@ -12,26 +12,26 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import { useState } from 'react'
 
-import { appHeight, headerHeight } from '../../styles/variables'
+import { height } from '../../styles/variables'
 import AuthInput from './AuthInput'
 
 const styles = css`
-	min-height: calc(${appHeight}vh - ${headerHeight * 2}px);
-	padding: 20px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	
+	flex-grow: 1;
+	padding: 20px;
+
 	.paper {
-		padding: 15px;
-		max-width: 600px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		max-width: 600px;
+		padding: 15px;
 	}
 	.avatar {
-		background-color: #444;
 		margin-bottom: 5px;
+		background-color: #444;
 		color: white;
 	}
 	.title {

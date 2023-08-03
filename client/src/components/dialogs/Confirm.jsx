@@ -15,7 +15,7 @@ const styles = css`
 	}
 `
 
-export default function ConfirmModal({ title, text, open, onNo, onYes }) {
+export default function Confirm({ title, text, open, onNo, onYes }) {
 	return (
 		<Dialog css={styles} open={open} onClose={onNo}>
 			<DialogTitle>{title}</DialogTitle>

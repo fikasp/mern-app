@@ -9,7 +9,7 @@ import SaveIcon from '@mui/icons-material/Save'
 import CancelIcon from '@mui/icons-material/Cancel'
 
 import { updateListItem, deleteListItem } from '../../redux/actions/list.action'
-import ConfirmModal from '../helpers/ConfirmModal'
+import Confirm from '../dialogs/Confirm'
 
 const styles = css`
 	display: grid;
@@ -22,18 +22,18 @@ const styles = css`
 		align-items: center;
 	}
 	.text {
-		line-height: 15px;
-		font-size: 16px;
 		color: white;
+		line-height: 18px;
+		font-size: 16px;
 	}
 	.input {
-		font-size: 16px;
-		background-color: #222;
 		color: white;
+		background-color: #333;
+		font-size: 16px;
 	}
 	.done {
-		text-decoration: line-through;
 		color: #888;
+		text-decoration: line-through;
 	}
 	.checkbox {
 		height: 14px;
@@ -131,7 +131,7 @@ export default function ListItem({ id, done, name }) {
 					</div>
 				</>
 			)}
-			<ConfirmModal
+			<Confirm
 				title="Delete confirmation"
 				text="Are you sure you want to delete this item?"
 				open={showConfirmDialog}

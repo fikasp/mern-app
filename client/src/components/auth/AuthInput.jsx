@@ -6,7 +6,18 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 const styles = css`
-
+	.MuiFormLabel-root {
+		color: #ccc;
+	}
+	.MuiFormLabel-root.Mui-focused {
+		color: red;
+	}
+	.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+		border-color: #444;
+	}
+	.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+		border-color: red;
+	}
 `
 
 export default function AuthInput({

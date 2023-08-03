@@ -4,41 +4,45 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { Typography, Button } from '@mui/material'
 
-import { headerHeight } from '../../styles/variables'
+import { height } from '../../styles/variables'
 
 const styles = (backgroundColor) => css`
-	height: ${headerHeight}px;
-	color: white;
-	background-color: ${backgroundColor};
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	flex-shrink: 0;
+	
+	height: ${height.bar}px;
+	background-color: ${backgroundColor};
+	color: white;
+
 	font-weight: bold;
 	text-shadow: 0 0 5px black;
 	transition: 0.5s;
 
 	.left {
-		width: 140px;
-		height: 100%;
-		padding-left: 20px;
 		display: flex;
 		justify-content: left;
 		align-items: center;
+		width: 140px;
+		height: 100%;
+		padding-left: 20px;
 	}
 	.center {
-		width: 110px;
-		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		width: 110px;
+		height: 100%;
 	}
 	.right {
-		width: 140px;
-		height: 100%;
-		padding-right: 10px;
 		display: flex;
 		justify-content: right;
 		align-items: center;
+		width: 140px;
+		height: 100%;
+		padding-right: 10px;
+
 		.button {
 			width: 100px;
 		}
