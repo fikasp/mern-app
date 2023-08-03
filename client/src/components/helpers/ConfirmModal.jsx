@@ -10,12 +10,8 @@ import {
 } from '@mui/material'
 
 const styles = css`
-	& .MuiPaper-root {
-		background-color: rgba(20, 20, 20, 0.9);
-		box-shadow: 0px 0px 5px 5px #111;
-	}
-	& .MuiTypography-root {
-		color: #ccc;
+	.MuiPaper-root {
+		background-color: rgba(10, 10, 10, 0.9);
 	}
 `
 

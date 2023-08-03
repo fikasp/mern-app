@@ -19,7 +19,7 @@ const global = css`
 	}
 	html {
 		color: white;
-		background-color: black;
+		background-color: #111;
 		font-family: 'Roboto', sans-serif;
 		display: flex;
 		justify-content: center;

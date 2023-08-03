@@ -5,23 +5,24 @@ import { Typography } from '@mui/material'
 
 import {
 	appWidth,
+	appHeight,
 	appMinWidth,
 	appMaxWidth,
 	headerHeight,
 } from '../../styles/variables'
 import List from '../content/List'
-import Form from '../content/Form'
+import Form from '../content/ListForm'
 
 const styles = css`
-	height: calc(100% - ${headerHeight * 2}px);
+	min-height: calc(${appHeight}vh - ${headerHeight * 2}px);
 	overflow-x: hidden;
 	overflow-y: auto;
 
-	& > section {
+	section {
 		width: ${appWidth}vw;
 		min-width: ${appMinWidth}px;
 		max-width: ${appMaxWidth}px;
-		padding: 10px;
+		padding: 20px;
 	}
 `
 

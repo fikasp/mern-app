@@ -8,12 +8,13 @@ import {
 } from '../../styles/variables'
 
 const styles = (color) => css`
-	height: ${appHeight}vh;
 	width: ${appWidth}vw;
 	min-width: ${appMinWidth}px;
 	max-width: ${appMaxWidth}px;
+	min-height: ${appHeight}vh;
 	background-color: ${color};
-	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
 	overflow: hidden;
 	flex-direction: column;
 	text-align: center;

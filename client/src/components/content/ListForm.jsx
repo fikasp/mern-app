@@ -9,12 +9,18 @@ import { createListItem } from '../../redux/actions/list.action'
 const styles = css`
 	width: 330px;
 	margin: 10px;
-	& input {
-		color: white;
-	}
-	& .MuiFormLabel-root {
+	/* .MuiFormLabel-root {
 		color: gray;
 	}
+	.MuiFormLabel-root.Mui-focused {
+		color: red;
+	}
+	.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+		border-color: #444;
+	}
+	.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+		border-color: red;
+	} */
 `
 
 export default function Form() {

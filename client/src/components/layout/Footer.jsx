@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Button } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 
@@ -28,10 +28,12 @@ export default function Footer() {
 
 	return (
 		<footer css={styles}>
-			{currentPath === '/' && (
+			{currentPath === '/' ? (
 				<Button variant="contained" onClick={handleClick}>
 					Update data
 				</Button>
+			) : (
+				<Typography>ARWcode &copy;2023</Typography>
 			)}
 		</footer>
 	)

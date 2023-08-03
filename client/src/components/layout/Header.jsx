@@ -17,7 +17,7 @@ const styles = (backgroundColor) => css`
 	text-shadow: 0 0 5px black;
 	transition: 0.5s;
 
-	& .left {
+	.left {
 		width: 140px;
 		height: 100%;
 		padding-left: 20px;
@@ -25,21 +25,21 @@ const styles = (backgroundColor) => css`
 		justify-content: left;
 		align-items: center;
 	}
-	& .center {
+	.center {
 		width: 110px;
 		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
-	& .right {
+	.right {
 		width: 140px;
 		height: 100%;
 		padding-right: 10px;
 		display: flex;
 		justify-content: right;
 		align-items: center;
-		& .button {
+		.button {
 			width: 100px;
 		}
 	}
@@ -77,20 +77,22 @@ export default function Header({ title }) {
 						component={Link}
 						to="/auth"
 						variant="contained"
+						color="primary"
 						className="button"
 						onClick={handleClick}
 					>
-						Log Out
+						Sign Out
 					</Button>
 				) : (
 					<Button
 						component={Link}
 						to="/"
 						variant="contained"
+						color="secondary"
 						className="button"
 						onClick={handleClick}
 					>
-						Log In
+						Sign In
 					</Button>
 				)}
 			</div>

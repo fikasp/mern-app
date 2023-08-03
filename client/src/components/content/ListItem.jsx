@@ -9,33 +9,33 @@ import SaveIcon from '@mui/icons-material/Save'
 import CancelIcon from '@mui/icons-material/Cancel'
 
 import { updateListItem, deleteListItem } from '../../redux/actions/list.action'
-import ConfirmModal from '../layout/ConfirmModal'
+import ConfirmModal from '../helpers/ConfirmModal'
 
 const styles = css`
 	display: grid;
 	grid-template-columns: 40px 240px 50px;
 	align-items: center;
 	padding: 4px;
-	& * {
+	* {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
-	& .text {
+	.text {
 		line-height: 15px;
 		font-size: 16px;
 		color: white;
 	}
-	& .input {
+	.input {
 		font-size: 16px;
 		background-color: #222;
 		color: white;
 	}
-	& .done {
+	.done {
 		text-decoration: line-through;
 		color: #888;
 	}
-	& .checkbox {
+	.checkbox {
 		height: 14px;
 	}
 `
