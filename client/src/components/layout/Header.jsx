@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { Typography, Button } from '@mui/material'
+
 import { headerHeight } from '../../styles/variables'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
 
 const styles = (backgroundColor) => css`
 	height: ${headerHeight}px;
@@ -71,9 +72,27 @@ export default function Header({ title }) {
 			</div>
 			<div className="center">{title}</div>
 			<div className="right">
-				<Button variant="contained" className="button" onClick={handleClick}>
-					{user ? 'Log out' : 'Log in'}
-				</Button>
+				{user ? (
+					<Button
+						component={Link}
+						to="/auth"
+						variant="contained"
+						className="button"
+						onClick={handleClick}
+					>
+						Log Out
+					</Button>
+				) : (
+					<Button
+						component={Link}
+						to="/"
+						variant="contained"
+						className="button"
+						onClick={handleClick}
+					>
+						Log In
+					</Button>
+				)}
 			</div>
 		</header>
 	)

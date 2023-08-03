@@ -2,9 +2,9 @@
 import { css } from '@emotion/react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { TextField } from '@mui/material'
 
 import { createListItem } from '../../redux/actions/list.action'
-import TextField from '@mui/material/TextField'
 
 const styles = css`
 	width: 330px;

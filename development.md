@@ -4,8 +4,6 @@
 
 ### Client
 
-- Auth form
-
 ### Server
 
 - MongoDB
@@ -13,6 +11,10 @@
 - Google auth
 
 ## History
+
+### 2023-08-03 (1.2.0)
+
+- Add authentication form
 
 ### 2023-08-02 (1.1.0)
 

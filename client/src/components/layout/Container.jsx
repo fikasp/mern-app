@@ -1,6 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { appHeight, appWidth, appMinWidth, appMaxWidth } from '../../styles/variables'
+import {
+	appHeight,
+	appWidth,
+	appMinWidth,
+	appMaxWidth,
+} from '../../styles/variables'
 
 const styles = (color) => css`
 	height: ${appHeight}vh;
