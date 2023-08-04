@@ -92,3 +92,14 @@ export async function deleteListItem(req, res) {
 		next(err)
 	}
 }
+
+export async function deleteList(req, res) {
+	try {
+		await models.write(path, [])
+		res.json([])
+
+		console.log(`All items deleted...`)
+	} catch (err) {
+		next(err)
+	}
+}

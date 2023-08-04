@@ -1,18 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { width, height } from '../../styles/variables'
+import { width, height } from '../../styles/dimensions'
 
 const styles = (color) => css`
-  display: flex;
+	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: stretch;
 	overflow: hidden;
 
-	width: ${width.app}vw;
+	width: ${width.vw}vw;
 	min-width: ${width.min}px;
 	max-width: ${width.max}px;
-	min-height: ${height.app}px;
+	height: ${height.app}px;
+	max-height: calc(100vh - 20px);
 
 	background-color: ${color};
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);

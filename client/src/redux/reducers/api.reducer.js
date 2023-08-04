@@ -1,4 +1,4 @@
-import { API_LOADING, API_ERROR } from '../actions'
+import * as actions from '../actions'
 
 const initialState = {
 	isLoading: false,
@@ -7,12 +7,12 @@ const initialState = {
 
 export default function apiReducer(state = initialState, action) {
 	switch (action.type) {
-		case API_LOADING:
-			console.log(API_LOADING, action.payload)
+		case actions.API_LOADING:
+			console.log(actions.API_LOADING, action.payload)
 			return { ...state, isLoading: action.payload }
 
-		case API_ERROR:
-			console.log(API_ERROR, action.payload)
+		case actions.API_ERROR:
+			console.log(actions.API_ERROR, action.payload)
 			return { ...state, error: action.payload }
 
 		default:

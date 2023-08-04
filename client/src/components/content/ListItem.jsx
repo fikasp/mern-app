@@ -23,7 +23,7 @@ const styles = css`
 	}
 	.text {
 		color: white;
-		line-height: 18px;
+		line-height: 19px;
 		font-size: 16px;
 	}
 	.input {

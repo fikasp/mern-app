@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { Typography, Button } from '@mui/material'
 
-import { height } from '../../styles/variables'
+import { height } from '../../styles/dimensions'
 
 const styles = (backgroundColor) => css`
 	display: flex;
@@ -18,6 +18,8 @@ const styles = (backgroundColor) => css`
 
 	font-weight: bold;
 	text-shadow: 0 0 5px black;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+	z-index: 1;
 	transition: 0.5s;
 
 	.left {

@@ -2,25 +2,24 @@
 import { css } from '@emotion/react'
 import { useSelector } from 'react-redux'
 
+import { width } from '../../styles/dimensions'
 import ListItem from './ListItem'
 
 const styles = css`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	overflow: auto;
 	text-align: center;
-	padding: 10px;
 	gap: 10px;
 `
 
 export default function List() {
 	const list = useSelector((store) => store.list)
-
+	const reversedList = Array.isArray(list) ? list.slice().reverse() : []
 	return (
 		<ul css={styles}>
-			{Array.isArray(list) && list.length > 0
-				? list.map((item) => (
+			{reversedList.length > 0
+				? reversedList.map((item) => (
 						<ListItem
 							key={item.id}
 							id={item.id}

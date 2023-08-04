@@ -12,7 +12,7 @@
 
 ## History
 
-### 2023-08-03 (1.2.0)
+### 2023-08-03 (1.1.1)
 
 - Add authentication form
 

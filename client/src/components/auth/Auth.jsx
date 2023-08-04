@@ -1,5 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { useDispatch } from 'react-redux'
+import { useLocation } from 'react-router-dom'
+import { useState } from 'react'
 import {
 	Avatar,
 	Button,
@@ -7,27 +10,24 @@ import {
 	Grid,
 	Typography,
 	Container,
-	TextField,
 } from '@mui/material'
+import { height } from '../../styles/dimensions'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import { useState } from 'react'
-
-import { height } from '../../styles/variables'
 import AuthInput from './AuthInput'
 
 const styles = css`
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
 	align-items: center;
-	flex-grow: 1;
+	overflow-y: auto;
 	padding: 20px;
 
 	.paper {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		max-width: 600px;
-		padding: 15px;
+		max-width: 500px;
+		padding: 20px;
 	}
 	.avatar {
 		margin-bottom: 5px;
@@ -37,14 +37,37 @@ const styles = css`
 	.title {
 		margin-bottom: 20px;
 	}
+	.button {
+		margin-top: 15px;
+	}
 `
 
-export default function Auth() {
-	const isSignup = true
+const initialState = {
+	firstName: '',
+	lastName: '',
+	email: '',
+	password: '',
+	confirmPassword: '',
+}
 
+export default function Auth() {
+	// states
+	const [form, setForm] = useState(initialState)
+	const [isSignup, setIsSignup] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
 
-	const handleShowPassword = () => setShowPassword(!showPassword)
+	const location = useLocation()
+	const dispatch = useDispatch()
+
+	// handlers
+	const handleShowPassword = () => {
+		setShowPassword((prevShowPassword) => !prevShowPassword)
+	}
+	const handleSwitchMode = () => {
+		setForm(initialState)
+		setIsSignup((prevIsSignup) => !prevIsSignup)
+		// setShowPassword(false)
+	}
 
 	const handleSubmit = (evt) => {
 		console.log(evt.target)
@@ -82,6 +105,7 @@ export default function Auth() {
 								/>
 							</>
 						)}
+
 						<AuthInput
 							name="email"
 							label="Email Address"
@@ -95,6 +119,7 @@ export default function Auth() {
 							type={showPassword ? 'text' : 'password'}
 							handleShowPassword={handleShowPassword}
 						/>
+
 						{isSignup && (
 							<AuthInput
 								name="confirmPassword"
@@ -104,6 +129,22 @@ export default function Auth() {
 							/>
 						)}
 					</Grid>
+
+					<Button
+						type="submit"
+						className="button"
+						fullWidth
+						variant="contained"
+						color="primary"
+					>
+						{isSignup ? 'Sign Up' : 'Sign In'}
+					</Button>
+
+					<Button className="button" fullWidth onClick={handleSwitchMode}>
+						{isSignup
+							? 'Already have an account? Sign In'
+							: "Don't have an account? Sign Up"}
+					</Button>
 				</form>
 			</Paper>
 		</Container>

@@ -7,8 +7,11 @@ import { TextField } from '@mui/material'
 import { createListItem } from '../../redux/actions/list.action'
 
 const styles = css`
-	width: 330px;
-	margin: 10px;
+	width: 320px;
+	margin: 20px;
+	input {
+		text-align: left;
+	}
 `
 
 export default function Form() {

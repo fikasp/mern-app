@@ -1,25 +1,32 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { useSelector } from 'react-redux'
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
-import { width, height } from '../../styles/variables'
+import { width, height } from '../../styles/dimensions'
 import List from '../content/List'
 import Form from '../content/ListForm'
 
 const styles = css`
+	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	flex-grow: 1;
-
-	width: ${width.app}vw;
-	min-width: ${width.min}px;
-	max-width: ${width.max}px;
-	padding: 20px;
-	
-	overflow-x: hidden;
+	text-align: center;
 	overflow-y: auto;
+	padding: 10px 0;
+
+	.box-form {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-shrink: 0;
+	}
+
+	.box-list {
+		flex-grow: 1;
+		overflow-x: hidden;
+		overflow-y: scroll;
+	}
 `
 
 export default function Main() {
@@ -28,13 +35,17 @@ export default function Main() {
 	return (
 		<main css={styles}>
 			{isLoading ? (
-				<Typography>Ładowanie danych...</Typography>
+				<Typography className="text">Ładowanie danych...</Typography>
 			) : error ? (
-				<Typography>Error... {error.message}</Typography>
+				<Typography className="text">Error... {error.message}</Typography>
 			) : (
 				<>
-					<Form />
-					<List />
+					<Box className="box-form">
+						<Form />
+					</Box>
+					<Box className="box-list">
+						<List />
+					</Box>
 				</>
 			)}
 		</main>

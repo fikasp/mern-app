@@ -17,6 +17,15 @@ const global = css`
 		box-sizing: border-box;
 		border-spacing: 0;
 	}
+	*::-webkit-scrollbar {
+		width: 10px;
+	}
+	*::-webkit-scrollbar-track {
+		background-color: #222;
+	}
+	*::-webkit-scrollbar-thumb {
+		background-color: #2c2c2c;
+	} 
 	html {
 		color: white;
 		background-color: #111;
@@ -25,7 +34,6 @@ const global = css`
 		justify-content: center;
 		align-items: center;
 		min-height: 100vh;
-		padding: 10px;
 	}
 `
 export default global
