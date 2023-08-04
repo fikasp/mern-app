@@ -3,9 +3,11 @@ import { css } from '@emotion/react'
 import { Button, Typography } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+import { useState } from 'react'
 
 import { updateList, deleteList } from '../../redux/actions/list.action'
 import { height } from '../../styles/dimensions'
+import Confirm from '../dialogs/Confirm'
 
 const styles = css`
 	display: flex;
@@ -24,6 +26,8 @@ const styles = css`
 `
 
 export default function Footer() {
+	const [showConfirmDialog, setShowConfirmDialog] = useState(false)
+
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const currentPath = location.pathname
@@ -34,7 +38,15 @@ export default function Footer() {
 		dispatch(updateList())
 	}
 	const handleDelete = () => {
+		setShowConfirmDialog(true)
+	}
+
+	const handleConfirmDelete = () => {
 		dispatch(deleteList())
+		setShowConfirmDialog(false)
+	}
+	const handleCancelDelete = () => {
+		setShowConfirmDialog(false)
 	}
 
 	return (
@@ -51,6 +63,13 @@ export default function Footer() {
 			) : (
 				<Typography>ARWcode &copy;2023</Typography>
 			)}
+			<Confirm
+				title="Delete confirmation"
+				text="Are you sure you want to delete all elements?"
+				open={showConfirmDialog}
+				onNo={handleCancelDelete}
+				onYes={handleConfirmDelete}
+			/>
 		</footer>
 	)
 }

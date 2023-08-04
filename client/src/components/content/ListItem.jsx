@@ -133,7 +133,7 @@ export default function ListItem({ id, done, name }) {
 			)}
 			<Confirm
 				title="Delete confirmation"
-				text="Are you sure you want to delete this item?"
+				text="Are you sure you want to delete this element?"
 				open={showConfirmDialog}
 				onNo={handleCancelDelete}
 				onYes={handleConfirmDelete}
