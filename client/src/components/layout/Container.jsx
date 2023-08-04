@@ -13,7 +13,7 @@ const styles = (color) => css`
 	min-width: ${width.min}px;
 	max-width: ${width.max}px;
 	height: ${height.app}px;
-	max-height: calc(100vh - 20px);
+	max-height: calc(90vh);
 
 	background-color: ${color};
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
