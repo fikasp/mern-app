@@ -1,17 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Typography, Button } from '@mui/material'
 
 import { height } from '../../styles/dimensions'
+import * as actions from '../../redux/actions'
+import logger from '../../utils/logger'
 
 const styles = (backgroundColor) => css`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	flex-shrink: 0;
-	
+
 	height: ${height.bar}px;
 	background-color: ${backgroundColor};
 	color: white;
@@ -53,9 +56,23 @@ const styles = (backgroundColor) => css`
 
 export default function Header({ title }) {
 	const [backgroundColor, setBackgroundColor] = useState('gray')
-	const [user, setUser] = useState(false)
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
 	useEffect(() => {
+		// token
+		const token = user?.token
+
+		// if (token) {
+		//   const decodedToken = decode(token);
+
+		//   if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+		// }
+
+		setUser(JSON.parse(localStorage.getItem('profile')))
+
+		// backgroud
 		const interval = setInterval(() => {
 			setBackgroundColor(
 				`#${Math.floor(Math.random() * 16777215).toString(16)}`
@@ -67,8 +84,17 @@ export default function Header({ title }) {
 		}
 	}, [])
 
-	const handleClick = () => {
-		setUser(!user)
+	const handleSignIn = () => {
+		logger()
+		navigate('/')
+		setUser(true)
+	}
+
+	const handleSignOut = () => {
+		logger()
+		dispatch({ type: actions.AUTH_LOGOUT })
+		navigate('/auth')
+		setUser(null)
 	}
 
 	return (
@@ -80,23 +106,19 @@ export default function Header({ title }) {
 			<div className="right">
 				{user ? (
 					<Button
-						component={Link}
-						to="/auth"
-						variant="contained"
 						color="primary"
+						variant="contained"
 						className="button"
-						onClick={handleClick}
+						onClick={handleSignOut}
 					>
 						Sign Out
 					</Button>
 				) : (
 					<Button
-						component={Link}
-						to="/"
-						variant="contained"
 						color="secondary"
+						variant="contained"
 						className="button"
-						onClick={handleClick}
+						onClick={handleSignIn}
 					>
 						Sign In
 					</Button>

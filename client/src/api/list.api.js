@@ -1,10 +1,25 @@
 import axios from 'axios'
 import { API_URL } from '../config/api'
 
-const url = `${API_URL}/list`
+const API = axios.create({ baseURL: API_URL })
 
-export const readList = () => axios.get(url)
-export const createListItem = (newItem) => axios.post(url, newItem)
-export const updateListItem = (id, updatedItem) => axios.patch(`${url}/${id}`, updatedItem)
-export const deleteListItem = (id) => axios.delete(`${url}/${id}`)
-export const deleteList = () => axios.delete(url)
+API.interceptors.request.use((req) => {
+	if (localStorage.getItem('profile')) {
+		req.headers.Authorization = `Bearer ${
+			JSON.parse(localStorage.getItem('profile')).token
+		}`
+	}
+	return req
+})
+
+// list
+export const readList = () => API.get('/list')
+export const createListItem = (newItem) => API.post('/list', newItem)
+export const updateListItem = (id, updatedItem) =>
+	API.patch(`/list/${id}`, updatedItem)
+export const deleteListItem = (id) => API.delete(`/list/${id}`)
+export const deleteList = () => API.delete('/list')
+
+// user
+export const signIn = (formData) => API.post('/user/signin', formData)
+export const signUp = (formData) => API.post('/user/signup', formData)

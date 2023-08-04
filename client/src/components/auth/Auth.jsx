@@ -65,7 +65,7 @@ export default function Auth() {
 	const handleSwitchMode = () => {
 		setForm(initialState)
 		setIsSignup((prevIsSignup) => !prevIsSignup)
-		// setShowPassword(false)
+		setShowPassword(false)
 	}
 
 	const handleSubmit = (evt) => {
