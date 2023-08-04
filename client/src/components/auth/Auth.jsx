@@ -11,7 +11,6 @@ import {
 	Typography,
 	Container,
 } from '@mui/material'
-import { height } from '../../styles/dimensions'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import AuthInput from './AuthInput'
 
@@ -20,14 +19,14 @@ const styles = css`
 	flex-direction: column;
 	align-items: center;
 	overflow-y: auto;
-	padding: 20px;
+	padding: 15px;
 
 	.paper {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		max-width: 500px;
-		padding: 20px;
+		padding: 15px;
 	}
 	.avatar {
 		margin-bottom: 5px;
@@ -116,8 +115,8 @@ export default function Auth() {
 							name="password"
 							label="Password"
 							handleChange={handleChange}
-							type={showPassword ? 'text' : 'password'}
 							handleShowPassword={handleShowPassword}
+							type={showPassword ? 'text' : 'password'}
 						/>
 
 						{isSignup && (
