@@ -1,6 +1,6 @@
 export const width = {
 	vw: 60,
-	min: 370,
+	min: 360,
 	max: 1000,
 }
 
