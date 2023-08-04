@@ -1,25 +1,25 @@
 import * as actions from '../actions'
-import * as api from '../api/index.js'
+import * as api from '../../api/auth.api'
 
-export const signIn = (formData, router) => async (dispatch) => {
+export const signIn = (formData, location) => async (dispatch) => {
 	try {
 		const { data } = await api.signIn(formData)
 
 		dispatch({ type: actions.AUTH_LOGIN, data })
 		
-		router.push('/')
+		location('/')
 	} catch (error) {
 		console.log(error)
 	}
 }
 
-export const signUp = (formData, router) => async (dispatch) => {
+export const signUp = (formData, location) => async (dispatch) => {
 	try {
 		const { data } = await api.signUp(formData)
 
 		dispatch({ type: actions.AUTH_LOGOUT, data })
 
-		router.push('/')
+		location('/')
 	} catch (error) {
 		console.log(error)
 	}

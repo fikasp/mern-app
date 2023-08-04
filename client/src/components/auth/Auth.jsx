@@ -2,7 +2,7 @@
 import { css } from '@emotion/react'
 import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
 	Avatar,
 	Button,
@@ -12,6 +12,7 @@ import {
 	Container,
 } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import { signIn, signUp } from '../../redux/actions/auth.action'
 import AuthInput from './AuthInput'
 
 const styles = css`
@@ -41,7 +42,7 @@ const styles = css`
 	}
 `
 
-const initialState = {
+const initialFormData = {
 	firstName: '',
 	lastName: '',
 	email: '',
@@ -51,7 +52,7 @@ const initialState = {
 
 export default function Auth() {
 	// states
-	const [form, setForm] = useState(initialState)
+	const [formData, setFormData] = useState(initialFormData)
 	const [isSignup, setIsSignup] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
 
@@ -62,17 +63,26 @@ export default function Auth() {
 	const handleShowPassword = () => {
 		setShowPassword((prevShowPassword) => !prevShowPassword)
 	}
+
+	const handleChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value })
+	}
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+
+		if (isSignup) {
+			dispatch(signUp(formData, location))
+		} else {
+			dispatch(signIn(formData, location))
+		}
+	}
+
 	const handleSwitchMode = () => {
-		setForm(initialState)
+		setFormData(initialFormData)
 		setIsSignup((prevIsSignup) => !prevIsSignup)
 		setShowPassword(false)
 	}
-
-	const handleSubmit = (evt) => {
-		console.log(evt.target)
-	}
-
-	const handleChange = () => {}
 
 	return (
 		<Container css={styles} component="main">

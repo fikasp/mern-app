@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Typography, Button } from '@mui/material'
@@ -59,6 +59,7 @@ export default function Header({ title }) {
 	const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const location = useLocation()
 
 	useEffect(() => {
 		// token

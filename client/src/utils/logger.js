@@ -1,6 +1,6 @@
 const active = true
 
-export default function logger() {
+export default function logger(info="") {
 	if (active) {
 		// Get the function call stack
 		const stack = new Error().stack
@@ -16,6 +16,6 @@ export default function logger() {
 		const functionName = callerLine.substring(start, end)
 
 		// Print function name
-		console.log(`${functionName}()`)
+		console.log(`${functionName}(${info})`)
 	}
 }
