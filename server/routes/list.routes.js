@@ -9,6 +9,4 @@ router.patch('/:id', list.updateListItem)
 router.delete('/:id', list.deleteListItem)
 router.delete('/', list.deleteList)
 
-export default function useListRouter(app) {
-	app.use('/api/list', router)
-}
+export default router

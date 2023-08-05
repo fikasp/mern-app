@@ -28,7 +28,6 @@ export async function createListItem(req, res) {
 export async function readList(req, res, next) {
 	try {
 		const listItems = await ListItem.find()
-		// console.log(listItems)
 
 		const list = await models.read(path)
 		res.status(200).json(list)

@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import {
 	Avatar,
 	Button,
@@ -56,7 +56,7 @@ export default function Auth() {
 	const [isSignup, setIsSignup] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
 
-	const location = useLocation()
+	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
 	// handlers
@@ -72,9 +72,9 @@ export default function Auth() {
 		e.preventDefault()
 
 		if (isSignup) {
-			dispatch(signUp(formData, location))
+			dispatch(signUp(formData, navigate))
 		} else {
-			dispatch(signIn(formData, location))
+			dispatch(signIn(formData, navigate))
 		}
 	}
 
