@@ -2,7 +2,7 @@
 import { css } from '@emotion/react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
 	Avatar,
 	Button,
@@ -59,6 +59,10 @@ export default function Auth() {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
+	useEffect(() => {
+		console.log(formData)
+	}, [formData])
+
 	// handlers
 	const handleShowPassword = () => {
 		setShowPassword((prevShowPassword) => !prevShowPassword)
@@ -79,7 +83,7 @@ export default function Auth() {
 	}
 
 	const handleSwitchMode = () => {
-		setFormData(initialFormData)
+		// setFormData(initialFormData)
 		setIsSignup((prevIsSignup) => !prevIsSignup)
 		setShowPassword(false)
 	}

@@ -7,7 +7,6 @@ import { Typography, Button } from '@mui/material'
 
 import { height } from '../../styles/dimensions'
 import * as actions from '../../redux/actions'
-import logger from '../../utils/logger'
 
 const styles = (backgroundColor) => css`
 	display: flex;
@@ -83,16 +82,13 @@ export default function Header({ title }) {
 		return () => {
 			clearInterval(interval)
 		}
-	}, [])
+	}, [location])
 
 	const handleSignIn = () => {
-		logger()
-		navigate('/')
-		setUser(true)
+		navigate('/auth')
 	}
 
 	const handleSignOut = () => {
-		logger()
 		dispatch({ type: actions.AUTH_LOGOUT })
 		navigate('/auth')
 		setUser(null)
@@ -101,7 +97,7 @@ export default function Header({ title }) {
 	return (
 		<header css={styles(backgroundColor)}>
 			<div className="left">
-				{user ? <Typography>Przemysław</Typography> : null}
+				{user ? <Typography>{user.result.firstName}</Typography> : null}
 			</div>
 			<div className="center">{title}</div>
 			<div className="right">

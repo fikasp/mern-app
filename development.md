@@ -12,6 +12,10 @@
 
 ## History
 
+### 2023-08-04 (1.1.3)
+
+- Sign in, sign up and sign out system
+
 ### 2023-08-04 (1.1.2)
 
 - Client auth service, reducer and action
