@@ -5,24 +5,25 @@ import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Typography, Button } from '@mui/material'
 
-import { height } from '../../styles/dimensions'
+import { width, height } from '../../styles/dimensions'
 import * as actions from '../../redux/actions'
 
 const styles = (backgroundColor) => css`
+	height: ${height.bar}px;
+	z-index: 1;
+
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	flex-shrink: 0;
 
-	height: ${height.bar}px;
 	background-color: ${backgroundColor};
 	color: white;
 
 	font-weight: bold;
 	text-shadow: 0 0 5px black;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-	z-index: 1;
-	transition: 0.5s;
+	transition: background-color 0.5s;
 
 	.left {
 		display: flex;

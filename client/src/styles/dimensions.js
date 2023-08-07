@@ -1,10 +1,11 @@
 export const width = {
-	vw: 60,
+	vw: 80,
 	min: 360,
-	max: 1000,
+	media: 600,
+	max: 800,
 }
 
 export const height = {
-	app: 750,
 	bar: 60,
+	min: 720,
 }

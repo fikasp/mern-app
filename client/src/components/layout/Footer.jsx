@@ -6,19 +6,20 @@ import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 
 import { updateList, deleteList } from '../../redux/actions/list.action'
-import { height } from '../../styles/dimensions'
+import { width, height } from '../../styles/dimensions'
 import Confirm from '../dialogs/Confirm'
 
 const styles = css`
+	height: ${height.bar}px;
+	z-index: 1;
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-shrink: 0;
 
-	height: ${height.bar}px;
 	background-color: #333;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-	z-index: 1;
 	button {
 		width: 160px;
 		margin: 0 5px;

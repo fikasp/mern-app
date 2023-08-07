@@ -13,14 +13,21 @@ import {
 } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import { signIn, signUp } from '../../redux/actions/auth.action'
+import { height } from '../../styles/dimensions'
 import AuthInput from './AuthInput'
 
 const styles = css`
+	height: calc(100vh - ${height.bar}px);
+	padding: 15px;
+	overflow-y: auto;
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	overflow-y: auto;
-	padding: 15px;
+
+	@media (min-height: ${height.min}px) {
+		justify-content: center;
+	}
 
 	.paper {
 		display: flex;

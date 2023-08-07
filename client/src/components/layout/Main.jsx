@@ -3,17 +3,18 @@ import { css } from '@emotion/react'
 import { useSelector } from 'react-redux'
 import { Box, Typography } from '@mui/material'
 
-import { width, height } from '../../styles/dimensions'
+import { height } from '../../styles/dimensions'
 import List from '../content/List'
 import Form from '../content/ListForm'
 
 const styles = css`
-	flex-grow: 1;
+	height: calc(100vh - ${height.bar}px);
+	padding: 10px 0;
+	overflow-y: auto;
+
 	display: flex;
 	flex-direction: column;
 	text-align: center;
-	overflow-y: auto;
-	padding: 10px 0;
 
 	.box-form {
 		display: flex;
