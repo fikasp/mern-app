@@ -6,8 +6,9 @@ import { useDispatch } from 'react-redux'
 import { Typography, Button } from '@mui/material'
 
 import { useAppContext } from '../../context/context'
-import { width, height } from '../../styles/dimensions'
+import { height } from '../../styles/dimensions'
 import * as actions from '../../redux/actions'
+import decode from 'jwt-decode'
 
 const styles = (backgroundColor) => css`
 	height: ${height.bar}px;
@@ -66,11 +67,10 @@ export default function Header({ title }) {
 		// token
 		const token = user?.token
 
-		// if (token) {
-		//   const decodedToken = decode(token);
-
-		//   if (decodedToken.exp * 1000 < new Date().getTime()) logout();
-		// }
+		if (token) {
+			const decodedToken = decode(token)
+			if (decodedToken.exp * 1000 < new Date().getTime()) handleSignOut()
+		}
 
 		setUser(JSON.parse(localStorage.getItem('profile')))
 

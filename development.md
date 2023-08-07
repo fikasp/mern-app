@@ -17,6 +17,7 @@
 - Fix width and height
 - Config global user context
 - Connect items to MongoDB
+- Handle token expiring
 - Finish custom auth
 
 ### 2023-08-04 (1.1.3)
