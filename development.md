@@ -20,7 +20,7 @@
 - Handle token expiring
 - Finish custom auth
 
-### 2023-08-04 (1.1.3)
+### 2023-08-05 (1.1.3)
 
 - Sign in, sign up and sign out system
 
@@ -50,3 +50,4 @@
 ### 2023-07-12
 
 - Start working on MERN app
+- Prepare boilerplate code
