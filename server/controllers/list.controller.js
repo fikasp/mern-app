@@ -3,6 +3,7 @@ import ListItem from '../models/list.model.js'
 export async function createListItem(req, res) {
 	const { name } = req.body
 	try {
+		console.log('UserID', req.userId)
 		const newListItem = new ListItem({ name, creator: req.userId })
 		await newListItem.save()
 
@@ -17,7 +18,21 @@ export async function createListItem(req, res) {
 
 export async function readList(req, res) {
 	try {
+		console.log('UserID', req.userId)
 		const listItems = await ListItem.find()
+		res.status(200).json(listItems)
+
+		console.log(listItems)
+	} catch (err) {
+		res.status(404).json({ message: err.message })
+	}
+}
+
+export async function readListByUser(req, res) {
+	const userId = req.userId || req.params.id
+	try {
+		console.log('UserID:', userId)
+		const listItems = await ListItem.find({ creator: userId })
 		res.status(200).json(listItems)
 
 		console.log(listItems)
@@ -59,7 +74,8 @@ export async function deleteListItem(req, res, next) {
 
 export async function deleteList(req, res, next) {
 	try {
-		const deletedItems = await ListItem.deleteMany({})
+		console.log('UserID', req.userId)
+		const deletedItems = await ListItem.deleteMany({ creator: req.userId })
 		res.json({ message: 'All items deleted successfully.' })
 
 		console.log(`All items deleted...`)

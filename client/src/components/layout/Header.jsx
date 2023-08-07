@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Typography, Button } from '@mui/material'
 
+import { useAppContext } from '../../context/context'
 import { width, height } from '../../styles/dimensions'
 import * as actions from '../../redux/actions'
 
@@ -49,14 +50,14 @@ const styles = (backgroundColor) => css`
 		padding-right: 10px;
 
 		.button {
-			width: 100px;
+			width: 120px;
 		}
 	}
 `
 
 export default function Header({ title }) {
 	const [backgroundColor, setBackgroundColor] = useState('gray')
-	const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
+	const { user, setUser } = useAppContext()
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const location = useLocation()
@@ -91,6 +92,7 @@ export default function Header({ title }) {
 
 	const handleSignOut = () => {
 		dispatch({ type: actions.AUTH_LOGOUT })
+		dispatch({ type: actions.LIST_DELETE_ALL })
 		navigate('/auth')
 		setUser(null)
 	}

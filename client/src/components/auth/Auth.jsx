@@ -13,6 +13,7 @@ import {
 } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import { signIn, signUp } from '../../redux/actions/auth.action'
+import { readList } from '../../redux/actions/list.action'
 import { height } from '../../styles/dimensions'
 import AuthInput from './AuthInput'
 
@@ -58,7 +59,7 @@ const initialFormData = {
 }
 
 export default function Auth() {
-	// states
+
 	const [formData, setFormData] = useState(initialFormData)
 	const [isSignup, setIsSignup] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
@@ -66,11 +67,10 @@ export default function Auth() {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
-	useEffect(() => {
-		console.log(formData)
-	}, [formData])
+	// useEffect(() => {
+	// 	console.log(formData)
+	// }, [formData])
 
-	// handlers
 	const handleShowPassword = () => {
 		setShowPassword((prevShowPassword) => !prevShowPassword)
 	}
@@ -79,18 +79,18 @@ export default function Auth() {
 		setFormData({ ...formData, [e.target.name]: e.target.value })
 	}
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
-
+		
 		if (isSignup) {
-			dispatch(signUp(formData, navigate))
+			await dispatch(signUp(formData, navigate))
 		} else {
-			dispatch(signIn(formData, navigate))
+			await dispatch(signIn(formData, navigate))
 		}
+		dispatch(readList())
 	}
 
 	const handleSwitchMode = () => {
-		// setFormData(initialFormData)
 		setIsSignup((prevIsSignup) => !prevIsSignup)
 		setShowPassword(false)
 	}

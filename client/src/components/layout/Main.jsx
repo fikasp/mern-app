@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import { useSelector } from 'react-redux'
 import { Box, Typography } from '@mui/material'
 
+import { useAppContext } from '../../context/context'
 import { height } from '../../styles/dimensions'
 import List from '../content/List'
 import Form from '../content/ListForm'
@@ -32,10 +33,13 @@ const styles = css`
 
 export default function Main() {
 	const { isLoading, error } = useSelector((state) => state.api)
+	const { user } = useAppContext()
 
 	return (
 		<main css={styles}>
-			{isLoading ? (
+			{!user? (
+				<Typography className="text">Please Sign In</Typography>
+			) : isLoading ? (
 				<Typography className="text">Ładowanie danych...</Typography>
 			) : error ? (
 				<Typography className="text">Error... {error.message}</Typography>

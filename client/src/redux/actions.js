@@ -7,5 +7,5 @@ export const LIST_DELETE_ALL = 'LIST_DELETE_ALL'
 export const API_LOADING = 'API_LOADING'
 export const API_ERROR = 'API_ERROR'
 
-export const AUTH_LOGIN = 'LOGIN'
-export const AUTH_LOGOUT = 'LOGOUT'
+export const AUTH_LOGIN = 'AUTH_LOGIN'
+export const AUTH_LOGOUT = 'AUTH_LOGOUT'

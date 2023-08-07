@@ -4,18 +4,20 @@
 
 ### Client
 
+- Task sublist
+
 ### Server
 
-- MongoDB
-- Custom auth
 - Google auth
 
 ## History
 
-### 2023-08-07 (1.1.4)
+### 2023-08-07 (1.2.0)
 
 - Fix width and height
-- Connect items list to MongoDB
+- Config global user context
+- Connect items to MongoDB
+- Finish custom auth
 
 ### 2023-08-04 (1.1.3)
 

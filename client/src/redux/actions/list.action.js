@@ -23,28 +23,28 @@ export const updateList = () => async (dispatch) => {
 	}
 }
 
-export const createListItem = (item) => async (dispatch) => {
+export const createListItem = (newItem) => async (dispatch) => {
 	try {
-		const { data } = await api.createListItem(item)
+		const { data } = await api.createListItem(newItem)
 		dispatch({ type: actions.LIST_CREATE, payload: data })
 	} catch (err) {
 		console.error(err)
 	}
 }
 
-export const updateListItem = (id, key, value) => async (dispatch) => {
+export const updateListItem = (itemID, key, value) => async (dispatch) => {
 	try {
-		const { data } = await api.updateListItem(id, { [key]: value })
+		const { data } = await api.updateListItem(itemID, { [key]: value })
 		dispatch({ type: actions.LIST_UPDATE, payload: data })
 	} catch (err) {
 		console.error(err)
 	}
 }
 
-export const deleteListItem = (id) => async (dispatch) => {
+export const deleteListItem = (itemID) => async (dispatch) => {
 	try {
-		await api.deleteListItem(id)
-		dispatch({ type: actions.LIST_DELETE, payload: id })
+		await api.deleteListItem(itemID)
+		dispatch({ type: actions.LIST_DELETE, payload: itemID })
 	} catch (err) {
 		console.error(err)
 	}

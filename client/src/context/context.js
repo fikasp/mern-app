@@ -1,15 +1,13 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 const Context = createContext()
 export const useAppContext = () => useContext(Context)
 
-const initialState = {}
-
 export const ContextProvider = ({ children }) => {
-	const [state, setState] = useState(initialState)
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
 
 	return (
-		<Context.Provider value={{ state, setState }}>
+		<Context.Provider value={{ user, setUser }}>
       {children}
     </Context.Provider>
 	)

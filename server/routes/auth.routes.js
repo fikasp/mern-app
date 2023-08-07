@@ -1,7 +1,8 @@
 import { Router } from 'express'
-import { signin, signup } from '../controllers/auth.controller.js'
+import { readUsers, signin, signup } from '../controllers/auth.controller.js'
 
 const router = Router()
+router.get('/all', readUsers)
 router.post('/signin', signin)
 router.post('/signup', signup)
 

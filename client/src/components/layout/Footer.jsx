@@ -5,8 +5,9 @@ import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 
+import { useAppContext } from '../../context/context'
 import { updateList, deleteList } from '../../redux/actions/list.action'
-import { width, height } from '../../styles/dimensions'
+import { height } from '../../styles/dimensions'
 import Confirm from '../dialogs/Confirm'
 
 const styles = css`
@@ -28,12 +29,11 @@ const styles = css`
 
 export default function Footer() {
 	const [showConfirmDialog, setShowConfirmDialog] = useState(false)
+	const { user } = useAppContext()
 
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const currentPath = location.pathname
-
-	console.log(currentPath)
 
 	const handleUpdate = () => {
 		dispatch(updateList())
@@ -52,7 +52,7 @@ export default function Footer() {
 
 	return (
 		<footer css={styles}>
-			{currentPath === '/' ? (
+			{currentPath === '/' && user ? (
 				<>
 					<Button variant="contained" color="secondary" onClick={handleUpdate}>
 						Update data

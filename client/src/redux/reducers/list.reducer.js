@@ -19,7 +19,7 @@ export default function listReducer(state = initialState, action) {
 			)
 
 		case actions.LIST_DELETE:
-			console.log(actions.LIST_DELETE, action.payload)
+			console.log(actions.LIST_DELETE)
 			return state.filter((item) => item._id !== action.payload)
 
 		case actions.LIST_DELETE_ALL:
