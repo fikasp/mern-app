@@ -12,6 +12,11 @@
 
 ## History
 
+### 2023-08-07 (1.1.4)
+
+- Fix width and height
+- Connect items list to MongoDB
+
 ### 2023-08-04 (1.1.3)
 
 - Sign in, sign up and sign out system

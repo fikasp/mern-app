@@ -39,7 +39,7 @@ export default function Form() {
 			name="name"
 			onChange={handleChange}
 			onKeyDown={handleKeyDown}
-			label="Add element do the list"
+			label="Add element do the list and press Enter"
 			variant="outlined"
 			value={formData.name}
 		/>

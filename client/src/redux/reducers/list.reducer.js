@@ -15,12 +15,12 @@ export default function listReducer(state = initialState, action) {
 		case actions.LIST_UPDATE:
 			console.log(actions.LIST_UPDATE, action.payload)
 			return state.map((item) =>
-				item.id === action.payload.id ? action.payload : item
+				item._id === action.payload._id ? action.payload : item
 			)
 
 		case actions.LIST_DELETE:
 			console.log(actions.LIST_DELETE, action.payload)
-			return state.filter((item) => item.id !== action.payload)
+			return state.filter((item) => item._id !== action.payload)
 
 		case actions.LIST_DELETE_ALL:
 			console.log(actions.LIST_DELETE_ALL)

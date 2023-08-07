@@ -2,7 +2,6 @@
 import { css } from '@emotion/react'
 import { useSelector } from 'react-redux'
 
-import { width } from '../../styles/dimensions'
 import ListItem from './ListItem'
 
 const styles = css`
@@ -10,6 +9,7 @@ const styles = css`
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
+	font-size: 18px;
 	gap: 10px;
 `
 
@@ -21,8 +21,8 @@ export default function List() {
 			{reversedList.length > 0
 				? reversedList.map((item) => (
 						<ListItem
-							key={item.id}
-							id={item.id}
+							key={item._id}
+							id={item._id}
 							name={item.name}
 							done={item.done}
 						/>

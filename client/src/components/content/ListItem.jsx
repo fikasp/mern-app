@@ -13,7 +13,7 @@ import Confirm from '../dialogs/Confirm'
 
 const styles = css`
 	display: grid;
-	grid-template-columns: 40px 240px 50px;
+	grid-template-columns: 40px 235px 55px;
 	align-items: center;
 	padding: 4px;
 	* {
@@ -23,20 +23,20 @@ const styles = css`
 	}
 	.text {
 		color: white;
-		line-height: 19px;
-		font-size: 16px;
+		line-height: 20px;
+		font-size: 18px;
 	}
 	.input {
 		color: white;
 		background-color: #333;
-		font-size: 16px;
+		font-size: 18px;
 	}
 	.done {
 		color: #888;
 		text-decoration: line-through;
 	}
 	.checkbox {
-		height: 14px;
+		height: 16px;
 	}
 `
 export default function ListItem({ id, done, name }) {
@@ -112,8 +112,8 @@ export default function ListItem({ id, done, name }) {
 						defaultValue={name}
 					/>
 					<div>
-						<SaveIcon fontSize="small" onClick={handleSave} />
-						<CancelIcon fontSize="small" onClick={handleCancel} />
+						<SaveIcon onClick={handleSave} />
+						<CancelIcon onClick={handleCancel} />
 					</div>
 				</>
 			) : (
@@ -126,8 +126,8 @@ export default function ListItem({ id, done, name }) {
 						{name}
 					</div>
 					<div>
-						<EditIcon fontSize="small" onClick={handleEdit} />
-						<DeleteIcon fontSize="small" onClick={handleDelete} />
+						<EditIcon onClick={handleEdit} />
+						<DeleteIcon onClick={handleDelete} />
 					</div>
 				</>
 			)}

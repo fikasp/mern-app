@@ -1,101 +1,66 @@
-import * as models from '../models/models.js'
 import ListItem from '../models/list.model.js'
-const path = './models/data.json'
 
 export async function createListItem(req, res) {
+	const { name } = req.body
 	try {
-		const { name } = req.body
-
-		const newListItem = new ListItem({ name })
+		const newListItem = new ListItem({ name, creator: req.userId })
 		await newListItem.save()
 
-		const data = await models.read(path)
+		res.status(201).json(newListItem)
 
-		const newID = models.getMaxId(data) + 1
-		const newItem = { id: newID, name, done: false }
-
-		const newData = [...data, newItem]
-		await models.write(path, newData)
-		res.status(201).json(newItem)
-
-		console.log(`Item ${newItem.id} added...`)
-		console.log(newItem)
+		console.log(`Item added...`)
+		console.log(newListItem)
 	} catch (err) {
 		res.status(409).json({ message: err.message })
 	}
 }
 
-export async function readList(req, res, next) {
+export async function readList(req, res) {
 	try {
 		const listItems = await ListItem.find()
+		res.status(200).json(listItems)
 
-		const list = await models.read(path)
-		res.status(200).json(list)
-
-		console.log(list)
+		console.log(listItems)
 	} catch (err) {
 		res.status(404).json({ message: err.message })
 	}
 }
 
-export async function readListItem(req, res, next) {
-	const { id } = req.params
-	try {
-		const list = await models.read(path)
-		const listItem = list.find((record) => record.id === Number(id))
-		if (!listItem) {
-			const error = new Error(`Record ${id} does not exist...`)
-			error.status = 404
-			throw error
-		}
-		res.json(listItem)
-
-		console.log(listItem)
-	} catch (err) {
-		next(err)
-	}
-}
-
-export async function updateListItem(req, res, next) {
+export async function updateListItem(req, res) {
 	const { id } = req.params
 	const updatedData = req.body
 	try {
-		const list = await models.read(path)
-		const itemIndex = list.findIndex((item) => item.id === Number(id))
-		const updatedItem = { ...list[itemIndex], ...updatedData }
-
-		const updatedList = list.map((item) =>
-			item.id == Number(id) ? updatedItem : item
+		const updatedItem = await ListItem.findByIdAndUpdate(
+			id,
+			{ $set: updatedData },
+			{ new: true }
 		)
-		await models.write(path, updatedList)
 		res.json(updatedItem)
 
-		console.log(`Item ${id} updated...`)
+		console.log(`Item updated...`)
 		console.log(updatedItem)
 	} catch (err) {
-		next(err)
+		res.status(404).json({ message: err.message })
 	}
 }
 
-export async function deleteListItem(req, res) {
+export async function deleteListItem(req, res, next) {
 	const { id } = req.params
 	try {
-		const list = await models.read(path)
-		const newData = list.filter((record) => record.id !== Number(id))
+		const deletedItem = await ListItem.findByIdAndRemove(id)
+		res.json({ message: `Item ${id} deleted successfully.` })
 
-		await models.write(path, newData)
-		res.json(newData)
-
-		console.log(`Item ${id} deleted...`)
+		console.log(`Item deleted...`)
+		console.log(deletedItem)
 	} catch (err) {
 		next(err)
 	}
 }
 
-export async function deleteList(req, res) {
+export async function deleteList(req, res, next) {
 	try {
-		await models.write(path, [])
-		res.json([])
+		const deletedItems = await ListItem.deleteMany({})
+		res.json({ message: 'All items deleted successfully.' })
 
 		console.log(`All items deleted...`)
 	} catch (err) {
