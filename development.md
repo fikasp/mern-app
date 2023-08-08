@@ -12,6 +12,10 @@
 
 ## History
 
+### 2023-08-08 (1.2.1)
+
+- Authorization errors notifier
+
 ### 2023-08-07 (1.2.0)
 
 - Fix width and height

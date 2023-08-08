@@ -38,7 +38,7 @@ export default function Main() {
 	return (
 		<main css={styles}>
 			{!user? (
-				<Typography className="text">Please Sign In</Typography>
+				<Typography className="text">Please sign in</Typography>
 			) : isLoading ? (
 				<Typography className="text">Ładowanie danych...</Typography>
 			) : error ? (

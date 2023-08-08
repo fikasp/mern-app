@@ -13,8 +13,8 @@ import App from './App'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
 	<React.StrictMode>
-		<Global styles={global} />
-		<Provider store={store}>
+	<Provider store={store}>
+			<Global styles={global} />
 			<ThemeProvider theme={theme}>
 				<ContextProvider>
 					<App />

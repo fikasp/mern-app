@@ -53,7 +53,7 @@ export async function signup(req, res) {
 			return res.status(400).json({ message: 'User already exists' })
 
 		if (password !== confirmPassword)
-			return res.status(400).json({ message: 'Passwords dont match' })
+			return res.status(400).json({ message: 'Passwords don\'t match' })
 
 		const hashedPassword = await bcrypt.hash(password, 12)
 

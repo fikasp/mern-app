@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
 import {
 	Avatar,
 	Button,
@@ -12,9 +12,10 @@ import {
 	Container,
 } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import * as actions from '../../redux/actions'
 import { signIn, signUp } from '../../redux/actions/auth.action'
-import { readList } from '../../redux/actions/list.action'
 import { height } from '../../styles/dimensions'
+import Notify from '../dialogs/Notify'
 import AuthInput from './AuthInput'
 
 const styles = css`
@@ -59,17 +60,13 @@ const initialFormData = {
 }
 
 export default function Auth() {
-
 	const [formData, setFormData] = useState(initialFormData)
 	const [isSignup, setIsSignup] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
+	const { errors } = useSelector((store) => store.auth)
 
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
-
-	// useEffect(() => {
-	// 	console.log(formData)
-	// }, [formData])
 
 	const handleShowPassword = () => {
 		setShowPassword((prevShowPassword) => !prevShowPassword)
@@ -81,13 +78,12 @@ export default function Auth() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-		
+
 		if (isSignup) {
-			await dispatch(signUp(formData, navigate))
+			dispatch(signUp(formData, navigate))
 		} else {
-			await dispatch(signIn(formData, navigate))
+			dispatch(signIn(formData, navigate))
 		}
-		dispatch(readList())
 	}
 
 	const handleSwitchMode = () => {
@@ -167,6 +163,14 @@ export default function Auth() {
 					</Button>
 				</form>
 			</Paper>
+			{ errors != null && (
+				<Notify
+					title="Authorization error"
+					text={errors?.response.data.message}
+					close={()=>dispatch({ type: actions.AUTH_CLEAR})}
+					open={errors != null}
+				/>
+			)}
 		</Container>
 	)
 }

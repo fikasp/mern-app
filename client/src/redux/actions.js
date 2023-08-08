@@ -9,3 +9,5 @@ export const API_ERROR = 'API_ERROR'
 
 export const AUTH_LOGIN = 'AUTH_LOGIN'
 export const AUTH_LOGOUT = 'AUTH_LOGOUT'
+export const AUTH_ERROR = 'AUTH_ERROR'
+export const AUTH_CLEAR = 'AUTH_CLEAR'
