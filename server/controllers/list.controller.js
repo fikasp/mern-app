@@ -1,6 +1,6 @@
 import ListItem from '../models/list.model.js'
 
-export async function createListItem(req, res) {
+export const createListItem = async (req, res) => {
 	const { name } = req.body
 	try {
 		console.log('UserID', req.userId)
@@ -16,7 +16,7 @@ export async function createListItem(req, res) {
 	}
 }
 
-export async function readList(req, res) {
+export const readList = async (req, res) => {
 	try {
 		console.log('UserID', req.userId)
 		const listItems = await ListItem.find()
@@ -28,7 +28,7 @@ export async function readList(req, res) {
 	}
 }
 
-export async function readListByUser(req, res) {
+export const readListByUser = async (req, res) => {
 	const userId = req.userId || req.params.id
 	try {
 		console.log('UserID:', userId)
@@ -41,7 +41,7 @@ export async function readListByUser(req, res) {
 	}
 }
 
-export async function updateListItem(req, res) {
+export const updateListItem = async (req, res) => {
 	const { id } = req.params
 	const updatedData = req.body
 	try {
@@ -59,7 +59,7 @@ export async function updateListItem(req, res) {
 	}
 }
 
-export async function deleteListItem(req, res, next) {
+export const deleteListItem = async (req, res, next) => {
 	const { id } = req.params
 	try {
 		const deletedItem = await ListItem.findByIdAndRemove(id)
@@ -72,7 +72,7 @@ export async function deleteListItem(req, res, next) {
 	}
 }
 
-export async function deleteList(req, res, next) {
+export const deleteList = async (req, res, next) => {
 	try {
 		console.log('UserID', req.userId)
 		const deletedItems = await ListItem.deleteMany({ creator: req.userId })

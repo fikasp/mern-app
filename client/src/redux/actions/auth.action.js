@@ -1,10 +1,10 @@
 import * as actions from '../actions'
-import * as api from '../../api/auth.api'
+import * as service from '../../service/auth.api'
 import { readList } from './list.action'
 
 export const signIn = (formData, navigate) => async (dispatch) => {
 	try {
-		const { data } = await api.signIn(formData)
+		const { data } = await service.signIn(formData)
 		await dispatch({ type: actions.AUTH_LOGIN, data })
 		dispatch(readList())
 
@@ -17,7 +17,7 @@ export const signIn = (formData, navigate) => async (dispatch) => {
 
 export const signUp = (formData, navigate) => async (dispatch) => {
 	try {
-		const { data } = await api.signUp(formData)
+		const { data } = await service.signUp(formData)
 		console.log(data)
 
 		await dispatch({ type: actions.AUTH_LOGIN, data })
