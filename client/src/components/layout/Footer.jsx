@@ -64,13 +64,15 @@ export default function Footer() {
 			) : (
 				<Typography>ARWcode &copy;2023</Typography>
 			)}
-			<Confirm
-				title="Delete confirmation"
-				text="Are you sure you want to delete all elements?"
-				open={showConfirmDialog}
-				onNo={handleCancelDelete}
-				onYes={handleConfirmDelete}
-			/>
+			{showConfirmDialog && (
+				<Confirm
+					title="Delete confirmation"
+					text="Are you sure you want to delete all elements?"
+					open={showConfirmDialog}
+					onNo={handleCancelDelete}
+					onYes={handleConfirmDelete}
+				/>
+			)}
 		</footer>
 	)
 }

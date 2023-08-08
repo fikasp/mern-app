@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { useEffect, useRef } from 'react'
 
 import {
 	Button,
@@ -19,15 +18,6 @@ const styles = css`
 `
 
 export default function Notify({ title, text, open, close }) {
-	// const buttonRef = useRef(null)
-
-	// useEffect(() => {
-	// 	if(buttonRef.current) {
-	// 		buttonRef?.current.focus()
-	// 	}
-	// 	console.log(buttonRef.current);
-
-	// }, [open])
 
 	return (
 		<Dialog css={styles} open={open} onClose={close}>

@@ -8,7 +8,6 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import SaveIcon from '@mui/icons-material/Save'
 import CancelIcon from '@mui/icons-material/Cancel'
 
-import { useAppContext } from '../../context/context'
 import { updateListItem, deleteListItem } from '../../redux/actions/list.action'
 import Confirm from '../dialogs/Confirm'
 
@@ -132,13 +131,15 @@ export default function ListItem({ id, done, name }) {
 					</div>
 				</>
 			)}
-			<Confirm
-				title="Delete confirmation"
-				text="Are you sure you want to delete this element?"
-				open={showConfirmDialog}
-				onNo={handleCancelDelete}
-				onYes={handleConfirmDelete}
-			/>
+			{showConfirmDialog && (
+				<Confirm
+					title="Delete confirmation"
+					text="Are you sure you want to delete this element?"
+					open={showConfirmDialog}
+					onNo={handleCancelDelete}
+					onYes={handleConfirmDelete}
+				/>
+			)}
 		</li>
 	)
 }
