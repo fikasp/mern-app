@@ -1,9 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk'
-import reducers from './reducers'
+import api from './reducers/api.reducer'
+import auth from './reducers/auth.reducer'
+import list from './reducers/list.reducer'
 
 const store = configureStore({
-	reducer: reducers,
+	reducer: {
+		api,
+		auth,
+		list		
+	},
 	middleware: [thunk],
 	devTools: true,
 })
