@@ -18,7 +18,7 @@ app.use('/api/auth', authRoutes)
 app.use('/api/list', listRoutes)
 app.use('/api', api ) 
 
-useStatic(app)
+// useStatic(app)
 useErrors(app)
 
 try {
