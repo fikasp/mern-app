@@ -12,6 +12,10 @@
 
 ## History
 
+### 2023-09-29 (1.2.2)
+
+- Deployment on Vercel
+
 ### 2023-08-08 (1.2.1)
 
 - Authorization errors notifier
